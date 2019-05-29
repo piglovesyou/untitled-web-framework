@@ -6,6 +6,7 @@
     "node": ">=6.13.1",
     "npm": ">=3.10.10"
   },
+  "bin": "index.js",
   "browserslist": [
     ">1%",
     "last 4 versions",
@@ -51,6 +52,7 @@
     "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.0",
     "@babel/node": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
@@ -199,26 +201,19 @@
     }
   },
   "scripts": {
-    "precommit": "lint-staged",
+    "precommit": "#lint-staged",
     "lint-js": "eslint --ext .ts --ext .tsx --ignore-path .gitignore --ignore-pattern \"!**/.*\" .",
     "lint-css": "stylelint \"src/**/*.{css,less,styl,scss,sass,sss}\"",
     "lint": "yarn codegen && yarn tsc && yarn run lint-js && yarn run lint-css",
     "fix-js": "yarn run lint-js --fix",
     "fix-css": "yarn run lint-css --fix",
     "fix": "yarn run fix-js && yarn run fix-css",
-    "codegen": "babel-node --extensions '.ts' tools/run codegen",
     "test": "jest",
     "test-watch": "yarn run test --watch --notify",
     "test-cover": "yarn run test --coverage",
     "coverage": "yarn run test-cover && opn coverage/lcov-report/index.html",
-    "clean": "babel-node --extensions '.ts' tools/run clean",
-    "copy": "babel-node --extensions '.ts' tools/run copy",
-    "bundle": "babel-node --extensions '.ts' tools/run bundle",
-    "build": "babel-node --extensions '.ts' tools/run build",
     "build-stats": "yarn run build --release --analyse",
-    "deploy": "babel-node --extensions '.ts' tools/run deploy",
-    "render": "babel-node --extensions '.ts' tools/run render",
-    "serve": "babel-node --extensions '.ts' tools/run runServer",
-    "start": "babel-node --extensions '.ts' tools/run start"
+    "build": "babel -d tools -x '.ts' tools",
+    "watch": "babel -w -d tools -x '.ts' tools"
   }
 }
