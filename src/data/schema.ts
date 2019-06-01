@@ -16,17 +16,17 @@ import {
   queries as NewsQueries,
 } from './graphql/News/schema';
 
-import {
-  schema as DatabaseSchema,
-  resolvers as DatabaseResolvers,
-  mutations as DatabaseMutations,
-  queries as DatabaseQueries,
-} from './graphql/Database/schema';
+// import {
+//   schema as DatabaseSchema,
+//   resolvers as DatabaseResolvers,
+//   mutations as DatabaseMutations,
+//   queries as DatabaseQueries,
+// } from './graphql/Database/schema';
 
-import {
-  schema as TimestampSchema,
-  resolvers as TimestampResolvers,
-} from './graphql/Scalar/Timestamp';
+// import {
+//   schema as TimestampSchema,
+//   resolvers as TimestampResolvers,
+// } from './graphql/Scalar/Timestamp';
 
 import {
   schema as OnMemoryStateSchema,
@@ -48,7 +48,6 @@ const RootQuery = [
   # 3. Automatically [stitch multiple schemas together](https://www.apollographql.com/docs/graphql-tools/schema-stitching.html) into one larger API
   type RootQuery {
     ${NewsQueries}
-    ${DatabaseQueries}
     ${OnMemoryStateQueries}
   }
 `,
@@ -66,7 +65,6 @@ const Mutation = [
   # 2. [Mock your GraphQL API](https://www.apollographql.com/docs/graphql-tools/mocking.html) with fine-grained per-type mocking
   # 3. Automatically [stitch multiple schemas together](https://www.apollographql.com/docs/graphql-tools/schema-stitching.html) into one larger API
   type Mutation {
-    ${DatabaseMutations}
     ${OnMemoryStateMutations}
   }
 `,
@@ -84,16 +82,16 @@ const SchemaDefinition = [
 
 // Merge all of the resolver objects together
 // Put schema together into one array of schema strings
-const resolvers = merge(NewsResolvers, DatabaseResolvers, TimestampResolvers);
+const resolvers = merge(NewsResolvers, /*DatabaseResolvers, TimestampResolvers*/);
 
 const schema = [
   ...SchemaDefinition,
-  ...TimestampSchema,
+  // ...TimestampSchema,
   ...RootQuery,
   ...Mutation,
 
   ...NewsSchema,
-  ...DatabaseSchema,
+  // ...DatabaseSchema,
   ...OnMemoryStateSchema,
 ];
 

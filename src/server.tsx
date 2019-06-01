@@ -25,7 +25,7 @@ import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
 import passport from './passport';
 import router from './router';
-import models from './data/models';
+// import models from './data/models';
 import schema from './data/schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 // @ts-ignore
@@ -227,13 +227,13 @@ app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
 //
 // Launch the server
 // -----------------------------------------------------------------------------
-const promise = models.sync().catch((err: Error) => console.error(err.stack));
+// const promise = models.sync().catch((err: Error) => console.error(err.stack));
 if (!module.hot) {
-  promise.then(() => {
+  // promise.then(() => {
     app.listen(config.port, () => {
       console.info(`The server is running at http://localhost:${config.port}/`);
     });
-  });
+  // });
 }
 
 //
