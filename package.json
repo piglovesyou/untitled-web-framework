@@ -211,9 +211,10 @@
     "test": "jest",
     "test-watch": "yarn run test --watch --notify",
     "test-cover": "yarn run test --coverage",
+    "codegen": "babel-node --extensions '.ts' tools/run codegen",
     "coverage": "yarn run test-cover && opn coverage/lcov-report/index.html",
     "build-stats": "yarn run build --release --analyse",
     "build": "babel -d tools -x '.ts' tools",
-    "watch": "babel -w -d tools -x '.ts' tools"
+    "watch": "babel --watch --source-maps inline -d tools -x '.ts' tools"
   }
 }

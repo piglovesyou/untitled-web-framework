@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+require('@babel/register')({
+  cwd: __dirname,
+  extensions: ['.ts'],
+  ...require('./babel.config'),
+});
+
 const run = require('./tools/run').default;
 const task = require(`./tools/${process.argv[2]}`).default;
 

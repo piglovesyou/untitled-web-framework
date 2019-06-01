@@ -71,6 +71,9 @@ const config = {
         include: [SRC_DIR, resolvePath('tools')],
         loader: 'babel-loader',
         options: {
+          // @piglovesyou: Necessary to track node_modules
+          cwd: ROOT_DIR,
+
           // https://github.com/babel/babel-loader#options
           cacheDirectory: isDebug,
 
@@ -484,6 +487,7 @@ const serverConfig = {
     './asset-manifest.json',
     nodeExternals({
       whitelist: [reStyle, reImage],
+      modulesDir: resolvePath('node_modules'),
     }),
   ],
 
