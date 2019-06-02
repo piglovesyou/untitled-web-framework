@@ -14,6 +14,7 @@ import webpack, { Compiler, Configuration } from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
+import { generateRoutes } from "./routes";
 import webpackConfig from './webpack.config';
 import run, { format } from './run';
 import clean from './clean';
@@ -70,6 +71,9 @@ let server: Application;
  */
 async function start() {
   if (server) return server;
+
+  await generateRoutes();
+
   server = express();
   server.use(errorOverlayMiddleware());
   server.use(express.static(path.resolve(__dirname, '../public')));

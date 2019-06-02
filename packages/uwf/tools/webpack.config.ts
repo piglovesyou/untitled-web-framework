@@ -14,6 +14,7 @@ import WebpackAssetsManifest from 'webpack-assets-manifest';
 import nodeExternals from 'webpack-node-externals';
 import cssnano from 'cssnano';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { genDir, webDir } from "./lib/dirs";
 import overrideRules from './lib/overrideRules';
 import pkg from '../package.json';
 import postcssConfig from './postcss.config';
@@ -68,7 +69,12 @@ const config = {
       // Rules for JS / JSX
       {
         test: reScript,
-        include: [SRC_DIR, resolvePath('tools')],
+        include: [
+          SRC_DIR,
+          resolvePath('tools'),
+          genDir,
+          webDir,
+        ],
         loader: 'babel-loader',
         options: {
           // @piglovesyou: Necessary to track node_modules

@@ -2,8 +2,10 @@ import { ApolloServer } from 'apollo-server';
 import getPort from 'get-port';
 import rimraf from 'rimraf';
 import { spawn } from './lib/cp';
+import { webDir } from "./lib/dirs";
 import runWebpack from './lib/runWebpack';
 import webpackConfig from './webpack.config';
+import path from 'path';
 
 const [, serverConfig] = webpackConfig;
 
@@ -13,8 +15,10 @@ const [, serverConfig] = webpackConfig;
  */
 export default async function codegen() {
   const promiseRemoveOldTypes = new Promise(resolve =>
-    rimraf('{./,src/**/}__generated__', resolve),
+    rimraf(path.resolve(webDir, '{./,src/**/}__generated__'), resolve),
   );
+
+  // TODO: Generate schema dependency information
 
   const promiseCompileSchemaJs = await runWebpack(
     {

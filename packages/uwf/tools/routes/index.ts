@@ -5,7 +5,9 @@ import { buildRouteScript } from './buildRouteScript';
 
 const { writeFile } = promises;
 
-export async function outputRoutes() {
+export async function generateRoutes() {
   const scriptStr = await buildRouteScript();
   await writeFile(path.resolve(genDir, 'routes.ts'), scriptStr);
 }
+
+if (require.main) generateRoutes();

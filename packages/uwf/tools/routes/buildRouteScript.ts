@@ -5,17 +5,23 @@ import { genDir, webDir } from '../lib/dirs';
 type RoutePath = string;
 type ModulePath = string;
 type ChunkName = string;
-type PathInfo = [RoutePath, ModulePath, ChunkName];
+type ExtType = string;
+type PathInfo = [RoutePath, ModulePath, ChunkName, ExtType];
 
 function buildRouteChildScript([
   routePath,
   modulePath,
   chunkName,
+  extType,
 ]: PathInfo): string {
   return `
   {
     path: '${routePath}',
-    load: () => import(/* webpackChunkName: '${chunkName}' */ '${modulePath}'),
+    load: async () => ([
+      '${chunkName}',
+      '${extType}',
+      await import(/* webpackChunkName: '${chunkName}' */ '${modulePath}'),
+    ]),
   },
 `;
 }
@@ -38,7 +44,7 @@ import { Route } from 'universal-router';
 
 import defaultRouteAction from '../tools/routes/defaultRouteAction';
 
-const routes: Route = {
+const routes = {
   path: '',
 
   // Keep in mind, routes are evaluated in order
@@ -72,16 +78,18 @@ async function createPathInfoArray(): Promise<PathInfo[]> {
     const dir = path.dirname(f);
     const ext = path.extname(f);
     const file = path.basename(f);
-    const base = path.basename(f, ext);
+    let base = path.basename(f, ext);
+    if (base === 'index') base = '';
 
-    const relDir = path.relative(path.resolve(webDir, 'routes'), dir);
-    const chunkName = relDir.split('/')[0];
-    const routePath = path.join(relDir, base);
+    let relDir = path.relative(path.resolve(webDir, 'routes'), dir);
+    if (relDir === 'index') relDir = '';
+    const chunkName = relDir ? relDir.split('/')[0] : base || 'index';
+    const routePath = path.join('/', relDir, base);
     const modulePath = path.join(
       path.relative(genDir, dir),
       ext.startsWith('.ts') ? base : file,
     );
-    return [routePath, modulePath, chunkName];
+    return [routePath, modulePath, chunkName, ext];
   });
 }
 
