@@ -37,7 +37,10 @@ module.exports = {
   rules: {
     // Forbid the use of extraneous packages
     // https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-extraneous-dependencies.md
-    'import/no-extraneous-dependencies': ['error', { packageDir: '.' }],
+    // 'import/no-extraneous-dependencies': ['error', { packageDir: '.' }],
+    'import/no-extraneous-dependencies': 'off',
+    'import/prefer-default-export': 'off',
+    'import/no-dynamic-require': 'off',
 
     // Recommend not to leave any console.log in your code
     // Use console.error, console.warn and console.info instead

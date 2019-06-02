@@ -10,7 +10,9 @@ export default function verifyCWD() {
       return;
     }
   } catch (e) {
-    throw new Error('You have to run uwf command on your project root where package.json are located.')
+    throw new Error(
+      'You have to run uwf command on your project root where package.json are located.',
+    );
   }
-  throw new Error('Your package.json doesn\'t contain devDependencies.uwf .');
+  throw new Error("Your package.json doesn't contain devDependencies.uwf .");
 }

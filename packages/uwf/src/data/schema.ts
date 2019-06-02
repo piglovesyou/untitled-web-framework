@@ -82,7 +82,9 @@ const SchemaDefinition = [
 
 // Merge all of the resolver objects together
 // Put schema together into one array of schema strings
-const resolvers = merge(NewsResolvers, /*DatabaseResolvers, TimestampResolvers*/);
+const resolvers = merge(
+  NewsResolvers /* DatabaseResolvers, TimestampResolvers */,
+);
 
 const schema = [
   ...SchemaDefinition,

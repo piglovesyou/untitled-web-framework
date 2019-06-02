@@ -230,9 +230,9 @@ app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
 // const promise = models.sync().catch((err: Error) => console.error(err.stack));
 if (!module.hot) {
   // promise.then(() => {
-    app.listen(config.port, () => {
-      console.info(`The server is running at http://localhost:${config.port}/`);
-    });
+  app.listen(config.port, () => {
+    console.info(`The server is running at http://localhost:${config.port}/`);
+  });
   // });
 }
 
