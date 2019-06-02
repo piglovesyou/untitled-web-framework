@@ -487,7 +487,7 @@ const serverConfig = {
     './asset-manifest.json',
     nodeExternals({
       whitelist: [reStyle, reImage],
-      modulesDir: resolvePath('node_modules'),
+      modulesDir: resolvePath('../../node_modules'),
     }),
   ],
 
