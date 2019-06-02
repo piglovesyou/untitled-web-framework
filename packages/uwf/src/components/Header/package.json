@@ -1,6 +1,6 @@
 {
-  "name": "Layout",
+  "name": "Header",
   "version": "0.0.0",
   "private": true,
-  "main": "./Layout.tsx"
+  "main": "Header.tsx"
 }

@@ -1,0 +1,10 @@
+{
+  "name": "uwf-example-basic",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "uwf start"
+  }
+}
