@@ -6,6 +6,9 @@ require('@babel/register')({
   ...require('../babel.config'),
 });
 
+const verifyCWD = require('./lib/verify-cwd').default;
+verifyCWD();
+
 const run = require('./run').default;
 const task = require(`./${process.argv[2]}`).default;
 

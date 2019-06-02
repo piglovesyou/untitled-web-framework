@@ -6,12 +6,16 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
+import { libDir, webDir } from "./lib/dirs";
 
 export function format(time: Date) {
   return time.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
 }
 
 function run(task: (arg0: any) => Promise<any>, options?: any) {
+  console.log(webDir);
+  console.log(libDir);
+
   // const task = typeof fn.default === 'undefined' ? fn : fn.default;
   const start = new Date();
   console.info(

@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
+  "devDependencies": {
+    "uwf": "*"
+  },
   "scripts": {
     "start": "uwf start"
   }
