@@ -15,7 +15,7 @@ export const spawn = (
   options?: SpawnOptions,
 ) =>
   new Promise((resolve, reject) => {
-    cp.spawn(command, args, options).on('close', code => {
+    cp.spawn(command, args, options || {}).on('close', code => {
       if (code === 0) {
         resolve();
       } else {
