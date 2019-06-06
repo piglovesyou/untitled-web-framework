@@ -10,11 +10,20 @@
 import { DocumentNode } from 'graphql';
 import merge from 'lodash.merge';
 
-import {
-  schema as NewsSchema,
-  resolvers as NewsResolvers,
-  queries as NewsQueries,
-} from './graphql/News/schema';
+import schemaDeps from '../../__generated__/schemaDeps';
+import graphqlDeps from '../../__generated__/graphqlDeps';
+
+// import {
+//   schema as NewsSchema,
+//   resolvers as NewsResolvers,
+//   queries as NewsQueries,
+// } from './graphql/News/schema';
+//
+// import {
+//   schema as OnMemoryStateSchema,
+//   queries as OnMemoryStateQueries,
+//   mutations as OnMemoryStateMutations,
+// } from './graphql/OnMemoryState/schema';
 
 // import {
 //   schema as DatabaseSchema,
@@ -28,13 +37,7 @@ import {
 //   resolvers as TimestampResolvers,
 // } from './graphql/Scalar/Timestamp';
 
-import {
-  schema as OnMemoryStateSchema,
-  queries as OnMemoryStateQueries,
-  mutations as OnMemoryStateMutations,
-} from './graphql/OnMemoryState/schema';
-
-const RootQuery = [
+const RootQuery =  [
   `
   
   # # React-Starter-Kit Querying API
@@ -47,14 +50,16 @@ const RootQuery = [
   # 2. [Mock your GraphQL API](https://www.apollographql.com/docs/graphql-tools/mocking.html) with fine-grained per-type mocking
   # 3. Automatically [stitch multiple schemas together](https://www.apollographql.com/docs/graphql-tools/schema-stitching.html) into one larger API
   type RootQuery {
-    ${NewsQueries}
-    ${OnMemoryStateQueries}
+    
+    ${schemaDeps.map(([module, relPath]) => {
+      return module.queries && module.queries.join('\n');
+    }).filter(s => Boolean(s)).join('\n')}
   }
 `,
 ];
 
-const Mutation = [
-  `
+const Mutation =
+  schemaDeps.some(([module]) => module.mutations) ? [ `
   # # React-Starter-Kit Mutating API
   # ### This GraphQL schema was built with [Apollo GraphQL-Tools](https://github.com/apollographql/graphql-tools)
   # _Build, mock, and stitch a GraphQL schema using the schema language_
@@ -65,14 +70,16 @@ const Mutation = [
   # 2. [Mock your GraphQL API](https://www.apollographql.com/docs/graphql-tools/mocking.html) with fine-grained per-type mocking
   # 3. Automatically [stitch multiple schemas together](https://www.apollographql.com/docs/graphql-tools/schema-stitching.html) into one larger API
   type Mutation {
-    ${OnMemoryStateMutations}
+    
+    ${schemaDeps.map(([module, relPath]) => {
+      return module.mutations && module.mutations.join('\n');
+    }).filter(s => Boolean(s)).join('\n')}
   }
 `,
-];
+] : [];
 
 const SchemaDefinition = [
   `
-  
   schema {
     query: RootQuery
     mutation: Mutation
@@ -82,8 +89,10 @@ const SchemaDefinition = [
 
 // Merge all of the resolver objects together
 // Put schema together into one array of schema strings
-const resolvers = merge(
-  NewsResolvers /* DatabaseResolvers, TimestampResolvers */,
+const resolvers = merge.apply(null,
+  schemaDeps.map(([module, relPath]) => {
+    return module.resolvers && module.resolvers;
+  }).filter(e => Boolean(e))
 );
 
 const schema = [
@@ -92,9 +101,13 @@ const schema = [
   ...RootQuery,
   ...Mutation,
 
-  ...NewsSchema,
+  // ...NewsSchema,
   // ...DatabaseSchema,
-  ...OnMemoryStateSchema,
+  // ...OnMemoryStateSchema,
+
+  ...schemaDeps.map(([module, relPath]) => {
+    return module.schema && module.schema.join('\n');
+  }).filter(s => Boolean(s)),
 ];
 
 export default {
