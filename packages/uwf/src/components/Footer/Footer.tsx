@@ -8,7 +8,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import withStyles from 'isomorphic-style-loader/withStyles';
+import withStyles from '@piglovesyou/isomorphic-style-loader/withStyles';
 import s from './Footer.css';
 import Link from '../Link';
 

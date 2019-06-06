@@ -8,7 +8,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import withStyles from 'isomorphic-style-loader/withStyles';
+import withStyles from '@piglovesyou/isomorphic-style-loader/withStyles';
 
 // external-global styles must be imported in your JS.
 import normalizeCss from 'normalize.css';

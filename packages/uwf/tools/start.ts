@@ -14,7 +14,8 @@ import webpack, { Compiler, Configuration } from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
-import { generateRoutes } from "./routes";
+import generateDeps from "./lib/generateDeps";
+import generateRoutesDeps from "./routes/generateRoutesDeps";
 import webpackConfig from './webpack.config';
 import run, { format } from './run';
 import clean from './clean';
@@ -72,7 +73,9 @@ let server: Application;
 async function start() {
   if (server) return server;
 
-  await generateRoutes();
+  await generateDeps('graphql/**/*.ts', 'schemaDeps');
+  await generateDeps('graphql/**/*.ts', 'graphqlDeps');
+  await generateRoutesDeps();
 
   server = express();
   server.use(errorOverlayMiddleware());

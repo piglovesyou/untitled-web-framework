@@ -19,7 +19,7 @@ declare module 'child_process' {
 }
 
 // Declare modules for non-typed packages
-declare module 'isomorphic-style-loader/StyleContext';
+declare module '@piglovesyou/isomorphic-style-loader/StyleContext';
 declare module 'react-deep-force-update';
 declare module 'apollo-link-logger';
 declare module 'webpack-hot-middleware/client';
@@ -28,7 +28,7 @@ declare module 'react-dev-utils/errorOverlayMiddleware';
 declare module 'react-notifications-component';
 declare module 'react-error-overlay';
 declare module 'react-test-renderer';
-declare module 'isomorphic-style-loader/withStyles' {
+declare module '@piglovesyou/isomorphic-style-loader/withStyles' {
   /* eslint no-underscore-dangle:0 */
   /* eslint no-undef:0 */
   const _default: <T>(

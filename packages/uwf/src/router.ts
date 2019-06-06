@@ -9,8 +9,7 @@
 
 import React from 'react';
 import UniversalRouter from 'universal-router';
-import routes from '../__generated__/routes';
-import Layout from './components/Layout/Layout';
+import routes from '../__generated__/routesDeps';
 import Page from "./components/Page/Page";
 
 export default new UniversalRouter(routes, {
@@ -19,14 +18,13 @@ export default new UniversalRouter(routes, {
       return context.route
         .load()
         // .then((action: any) => action.default(context, params));
-        .then(([chunk, extType, module]: any) => {
-          const component = React.createElement(Layout, {}, [
-            extType === '.md'
+        .then(({module, chunkName, ext}: any) => {
+          const component = ext === '.md'
               ? React.createElement(Page, module.default)
-              : React.createElement(module.default),
-          ]);
+              : React.createElement(module.default)
+          ;
           return {
-            chunks: [chunk],
+            chunks: [chunkName],
             title: module.title,
             component,
           };

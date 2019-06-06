@@ -9,7 +9,7 @@
 
 import React, { ComponentType } from 'react';
 import cx from 'classnames';
-import withStyles from 'isomorphic-style-loader/withStyles';
+import withStyles from '@piglovesyou/isomorphic-style-loader/withStyles';
 import s from './Navigation.css';
 import Link from '../Link';
 

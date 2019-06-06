@@ -4,10 +4,16 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
-  "devDependencies": {
-    "uwf": "*"
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "uwf start"
+  },
+  "dependencies": {
+    "apollo-client": "^2.6.1",
+    "classnames": "^2.2.6",
+    "normalize.css": "^8.0.1",
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.6",
+    "react-dom": "^16.8.6"
   }
 }

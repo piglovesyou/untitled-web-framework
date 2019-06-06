@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import withStyles from 'isomorphic-style-loader/withStyles';
+import withStyles from 'uwf/withStyles';
 import s from './Feedback.css';
 
 const Feedback = () => (

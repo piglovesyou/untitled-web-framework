@@ -136,19 +136,27 @@ const config = {
           // Convert CSS into JS module
           {
             issuer: { not: [reStyle] },
-            use: 'isomorphic-style-loader',
+            use: '@piglovesyou/isomorphic-style-loader',
           },
 
           // Process external/third-party styles
           {
-            exclude: SRC_DIR,
+            exclude: [
+              SRC_DIR,
+              path.join(webDir, 'routes'),
+              path.join(webDir, 'components'),
+            ],
             loader: 'css-loader',
             options: {
               sourceMap: isDebug,
             },
           },
           {
-            exclude: SRC_DIR,
+            exclude: [
+              SRC_DIR,
+              path.join(webDir, 'routes'),
+              path.join(webDir, 'components'),
+            ],
             loader: 'postcss-loader',
             options: {
               plugins: [
@@ -161,7 +169,11 @@ const config = {
 
           // Process internal/project styles (from src folder)
           {
-            include: SRC_DIR,
+            include: [
+              SRC_DIR,
+              path.join(webDir, 'routes'),
+              path.join(webDir, 'components'),
+            ],
             loader: 'css-loader',
             options: {
               // CSS Loader https://github.com/webpack/css-loader
@@ -284,6 +296,9 @@ const config = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    alias: {
+      'uwf/withStyles': resolvePath('./withStyles'),
+    }
   },
 
   resolveLoader: {
