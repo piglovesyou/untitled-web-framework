@@ -41,6 +41,7 @@
     "query-string": "^6.4.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.2",
+    "react-apollo-hooks": "^0.4.5",
     "react-dom": "^16.8.6",
     "sequelize": "^5.1.0",
     "serialize-javascript": "^1.6.1",
@@ -86,6 +87,10 @@
     "watch": "babel --watch --source-maps inline -d tools -x '.ts' tools"
   },
   "devDependencies": {
-    "apollo": "2.6.2"
+    "@graphql-codegen/cli": "^1.2.0",
+    "@graphql-codegen/typescript": "1.2.0",
+    "@graphql-codegen/typescript-operations": "^1.2.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.2.0",
+    "typesync": "^0.5.1"
   }
 }

@@ -1,11 +1,11 @@
+import { generate } from '@graphql-codegen/cli';
 import { ApolloServer } from 'apollo-server';
 import getPort from 'get-port';
+import path from 'path';
 import rimraf from 'rimraf';
-import { spawn } from './lib/cp';
 import { libDir, webDir } from "./lib/dirs";
 import runWebpack from './lib/runWebpack';
 import webpackConfig from './webpack.config';
-import path from 'path';
 
 const [, serverConfig] = webpackConfig;
 
@@ -17,6 +17,7 @@ export default async function codegen() {
   const promiseRemoveOldTypes = new Promise(resolve =>
     rimraf(path.resolve(webDir, '{./,src/**/}__generated__'), resolve),
   );
+
 
   // TODO: Generate schema dependency information
 
@@ -46,27 +47,25 @@ export default async function codegen() {
   const server = new ApolloServer(builtSchema);
   const { server: httpServer } = await server.listen({ port });
 
-  // TODO: It doesn't work
-  // console.log(`http://localhost:${port}/graphql`);
-  // await new Promise(resolve => setTimeout(resolve, 100 *1000));
-
-  await spawn(
-    'yarn',
-    [
-      'apollo',
-      'client:codegen',
-      '--includes', path.join(webDir, '**/*.graphql'),
-      // '--includes', path.join(webDir, '**/*.ts'),
-      // '--includes', path.join(webDir, '**/*.ts'),
-      // '--includes', path.join(webDir, '**/*.tsx'),
-      '--target',
-      'typescript',
-      '--endpoint',
-      `http://localhost:${port}/graphql`,
-    ],
+  await generate(
     {
-      stdio: 'inherit',
+      schema: `http://localhost:${port}/graphql`,
+      documents: path.join(webDir, '**/*.graphql'),
+      generates: {
+        [path.join(webDir, '__generated__/dataBinders.tsx')]: {
+          plugins: [
+            'typescript',
+            'typescript-operations',
+            'typescript-react-apollo',
+          ],
+          config: {
+            // withHOC: false,
+            withHooks: true,
+          }
+        },
+      },
     },
+    true
   );
 
   await new Promise(resolve => httpServer.close(resolve));

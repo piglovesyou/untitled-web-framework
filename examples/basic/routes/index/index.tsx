@@ -7,29 +7,20 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import withStyles from 'uwf/withStyles';
 import React from 'react';
-import { ChildDataProps, graphql } from 'react-apollo';
+import withStyles from 'uwf/withStyles';
+import { withHomeNews } from "../../__generated__/dataBinders";
 import Layout from "../../components/Layout/Layout";
-import { HomeNews } from './__generated__/HomeNews';
 import s from './index.css';
-import newsQuery from './news.graphql';
-
-// Note: There is a regression from flow-bin@0.89.0
-// which spoils OperationComponent declaration. Be careful.
-type ChildProps = ChildDataProps<{}, HomeNews>;
-const withNews = graphql<{}, HomeNews, {}, ChildProps>(newsQuery);
 
 export const title = 'React Starter Kit';
 
-const Home = withNews(props => {
+const Home = withHomeNews<{}>()(props => {
   const {
-    data: {
-      loading,
-      reactjsGetAllNews,
-      networkStatus: { isConnected },
-    },
-  } = props;
+    reactjsGetAllNews,
+    networkStatus: { isConnected },
+    loading,
+  } = props!.data!;
 
   return (
       <Layout>
