@@ -55,7 +55,8 @@ export default async function codegen() {
     [
       'apollo',
       'client:codegen',
-      '--includes', path.join(webDir, 'routes', '**/*.graphql'),
+      '--includes', path.join(webDir, '**/*.graphql'),
+      // '--includes', path.join(webDir, '**/*.ts'),
       // '--includes', path.join(webDir, '**/*.ts'),
       // '--includes', path.join(webDir, '**/*.tsx'),
       '--target',
