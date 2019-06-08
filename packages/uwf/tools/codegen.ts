@@ -2,7 +2,7 @@ import { ApolloServer } from 'apollo-server';
 import getPort from 'get-port';
 import rimraf from 'rimraf';
 import { spawn } from './lib/cp';
-import { webDir } from "./lib/dirs";
+import { libDir, webDir } from "./lib/dirs";
 import runWebpack from './lib/runWebpack';
 import webpackConfig from './webpack.config';
 import path from 'path';
@@ -23,7 +23,7 @@ export default async function codegen() {
   const promiseCompileSchemaJs = await runWebpack(
     {
       ...serverConfig,
-      entry: './src/data/schema',
+      entry: path.join(libDir, 'src/data/schema'),
       output: {
         path: serverConfig.output.path,
         filename: 'schema.js',
@@ -46,11 +46,18 @@ export default async function codegen() {
   const server = new ApolloServer(builtSchema);
   const { server: httpServer } = await server.listen({ port });
 
+  // TODO: It doesn't work
+  // console.log(`http://localhost:${port}/graphql`);
+  // await new Promise(resolve => setTimeout(resolve, 100 *1000));
+
   await spawn(
     'yarn',
     [
       'apollo',
       'client:codegen',
+      '--includes', path.join(webDir, 'routes', '**/*.graphql'),
+      // '--includes', path.join(webDir, '**/*.ts'),
+      // '--includes', path.join(webDir, '**/*.tsx'),
       '--target',
       'typescript',
       '--endpoint',

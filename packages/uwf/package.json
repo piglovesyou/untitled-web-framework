@@ -85,5 +85,7 @@
     "build": "babel -d tools -x '.ts' tools",
     "watch": "babel --watch --source-maps inline -d tools -x '.ts' tools"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "apollo": "^2.13.0"
+  }
 }
