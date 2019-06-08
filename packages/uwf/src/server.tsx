@@ -119,6 +119,8 @@ const server = new ApolloServer({
   playground: __DEV__,
   debug: __DEV__,
   context: ({ req }: { req: Request }) => ({ req }),
+  // TODO: https://github.com/apollographql/apollo-server/issues/2799
+  // parseOptions: { allowLegacySDLEmptyFields: true },
 });
 server.applyMiddleware({ app });
 

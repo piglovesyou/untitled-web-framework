@@ -21,14 +21,14 @@
     "apollo-link-http": "^1.5.14",
     "apollo-link-logger": "^1.2.3",
     "apollo-link-schema": "^1.2.2",
-    "apollo-server": "^2.4.8",
+    "apollo-server": "^2.6.2",
     "apollo-server-express": "^2.4.8",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
-    "graphql": "^14.0",
+    "graphql": "^14.3.1",
     "graphql-tag": "^2.10.1",
     "history": "^4.9.0",
     "jsonwebtoken": "^8.5.1",
@@ -84,5 +84,6 @@
     "build-stats": "yarn run build --release --analyse",
     "build": "babel -d tools -x '.ts' tools",
     "watch": "babel --watch --source-maps inline -d tools -x '.ts' tools"
-  }
+  },
+  "devDependencies": {}
 }

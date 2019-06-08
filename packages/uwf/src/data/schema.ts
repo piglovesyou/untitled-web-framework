@@ -15,7 +15,7 @@ import graphqlDeps from '../../__generated__/graphqlDeps';
 
 const Query = [
   `
-  type Query {
+  extend type Query {
     ${schemaDeps.map(([module, relPath]) => {
       return module.queries && module.queries.join('\n');
     }).filter(s => Boolean(s)).join('\n')}
@@ -25,8 +25,7 @@ const Query = [
 
 const Mutation =
   schemaDeps.some(([module]) => module.mutations) ? [ `
-  type Mutation {
-    
+  extend type Mutation {
     ${schemaDeps.map(([module, relPath]) => {
       return module.mutations && module.mutations.join('\n');
     }).filter(s => Boolean(s)).join('\n')}
@@ -34,14 +33,17 @@ const Mutation =
 `,
 ] : [];
 
-const SchemaDefinition = [
-  `
+const SchemaDefinition = `
+  type Query { _: Boolean }
+  type Mutation { _: Boolean }
+  type Subscription { _: Boolean }
+  
   schema {
     query: Query
     mutation: Mutation
+    subscription: Subscription
   }
-`,
-];
+`;
 
 const resolvers = merge.apply(null,
   schemaDeps.map(([module, relPath]) => {
@@ -50,7 +52,7 @@ const resolvers = merge.apply(null,
 );
 
 const schema = [
-  ...SchemaDefinition,
+  SchemaDefinition,
   ...Query,
   ...Mutation,
   ...schemaDeps.map(([module, relPath]) => {
