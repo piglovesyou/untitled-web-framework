@@ -1,14 +1,12 @@
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
 
-export const schema = [
-  `
+export const schema = `
   # GraphQL cannot handle long - normal timestamp will go failed.
   # In that case, use Timestamp.
   scalar Timestamp
 
-`,
-];
+`;
 
 export const resolvers = {
   Timestamp: new GraphQLScalarType({

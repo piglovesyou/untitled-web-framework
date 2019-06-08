@@ -2,8 +2,7 @@ import fetch from 'node-fetch';
 
 import { HomeNews_reactjsGetAllNews } from '../../../../routes/index/__generated__/HomeNews';
 
-export const schema = [
-  `
+export const schema = `
   # A single news article from [https://reactjsnews.com/](https://reactjsnews.com/)
   type ReactJSNewsItem {
     # The news item's title
@@ -21,8 +20,7 @@ export const schema = [
     # News article in HTML format
     content: String!
   }
-`,
-];
+`;
 
 export const queries = [
   `
@@ -41,7 +39,7 @@ let lastFetchTask: Promise<HomeNews_reactjsGetAllNews[]> | null;
 let lastFetchTime = Number(new Date(1970, 0, 1));
 
 export const resolvers = {
-  RootQuery: {
+  Query: {
     reactjsGetAllNews() {
       if (lastFetchTask) {
         return lastFetchTask;

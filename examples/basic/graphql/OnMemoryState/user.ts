@@ -1,10 +1,8 @@
-export const schema = [
-  `
+export const schema = `
   type User {
     id: String!
   }
-`,
-];
+`;
 
 export const queries = [
   `

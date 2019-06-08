@@ -20,13 +20,11 @@ export const resolvers = {
   },
 };
 
-export const schema = [
-  `
+export const schema = `
   type NetworkStatus {
     isConnected: Boolean!
   }
-`,
-];
+`;
 
 export const queries = [
   `

@@ -41,7 +41,7 @@ let lastFetchTask: Promise<HomeNews_reactjsGetAllNews[]> | null;
 let lastFetchTime = Number(new Date(1970, 0, 1));
 
 export const resolvers = {
-  RootQuery: {
+  Query: {
     reactjsGetAllNews() {
       if (lastFetchTask) {
         return lastFetchTask;

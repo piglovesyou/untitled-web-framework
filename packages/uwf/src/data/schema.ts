@@ -13,9 +13,9 @@ import merge from 'lodash.merge';
 import schemaDeps from '../../__generated__/schemaDeps';
 import graphqlDeps from '../../__generated__/graphqlDeps';
 
-const RootQuery =  [
+const Query = [
   `
-  type RootQuery {
+  type Query {
     ${schemaDeps.map(([module, relPath]) => {
       return module.queries && module.queries.join('\n');
     }).filter(s => Boolean(s)).join('\n')}
@@ -37,7 +37,7 @@ const Mutation =
 const SchemaDefinition = [
   `
   schema {
-    query: RootQuery
+    query: Query
     mutation: Mutation
   }
 `,
@@ -51,16 +51,10 @@ const resolvers = merge.apply(null,
 
 const schema = [
   ...SchemaDefinition,
-  // ...TimestampSchema,
-  ...RootQuery,
+  ...Query,
   ...Mutation,
-
-  // ...NewsSchema,
-  // ...DatabaseSchema,
-  // ...OnMemoryStateSchema,
-
   ...schemaDeps.map(([module, relPath]) => {
-    return module.schema && module.schema.join('\n');
+    return module.schema && module.schema;
   }).filter(s => Boolean(s)),
 ];
 
