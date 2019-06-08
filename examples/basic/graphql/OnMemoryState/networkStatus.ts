@@ -24,16 +24,12 @@ export const schema = `
   type NetworkStatus {
     isConnected: Boolean!
   }
+  
+  extend type Query {
+    networkStatus: NetworkStatus!
+  }
+  
+  extend type Mutation {
+    updateNetworkStatus(isConnected: Boolean): NetworkStatus!
+  }
 `;
-
-export const queries = [
-  `
-  networkStatus: NetworkStatus!
-`,
-];
-
-export const mutations = [
-  `
-  updateNetworkStatus(isConnected: Boolean): NetworkStatus!
-`,
-];

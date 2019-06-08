@@ -13,26 +13,6 @@ import merge from 'lodash.merge';
 import schemaDeps from '../../__generated__/schemaDeps';
 import graphqlDeps from '../../__generated__/graphqlDeps';
 
-const Query = [
-  `
-  extend type Query {
-    ${schemaDeps.map(([module, relPath]) => {
-      return module.queries && module.queries.join('\n');
-    }).filter(s => Boolean(s)).join('\n')}
-  }
-`,
-];
-
-const Mutation =
-  schemaDeps.some(([module]) => module.mutations) ? [ `
-  extend type Mutation {
-    ${schemaDeps.map(([module, relPath]) => {
-      return module.mutations && module.mutations.join('\n');
-    }).filter(s => Boolean(s)).join('\n')}
-  }
-`,
-] : [];
-
 const SchemaDefinition = `
   type Query { _: Boolean }
   type Mutation { _: Boolean }
@@ -53,11 +33,7 @@ const resolvers = merge.apply(null,
 
 const schema = [
   SchemaDefinition,
-  ...Query,
-  ...Mutation,
-  ...schemaDeps.map(([module, relPath]) => {
-    return module.schema && module.schema;
-  }).filter(s => Boolean(s)),
+  ...schemaDeps.map(([module, relPath]) => module.schema).filter(s => Boolean(s)),
 ];
 
 export default {
