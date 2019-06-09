@@ -44,6 +44,7 @@ const Link = ({
 
   const props = {
     ...(tagName === 'a' ? {href: to} : null),
+    onClick,
     ...restProps,
   };
 
