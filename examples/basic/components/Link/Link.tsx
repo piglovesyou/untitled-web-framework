@@ -8,46 +8,46 @@
  */
 
 import React, { ReactNode } from 'react';
-import {history} from 'uwf';
+import { history } from 'uwf';
 
 function isLeftClickEvent(event: MouseEvent) {
   return event.button === 0;
 }
 
 function isModifiedEvent(event: MouseEvent) {
-  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+  return Boolean(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 }
 
 type PropTypes = {
+  tagName: string;
   to: string;
   onClick?: Function;
   children?: ReactNode;
   className?: string;
 };
 
-const Link = ({ to, children, onClick, ...restProps }: PropTypes) => (
-  <a
-    href={to}
-    {...restProps}
-    onClick={(event: any) => {
-      if (onClick) {
-        onClick(event);
-      }
+const Link = ({
+                tagName = 'a',
+                to,
+                children,
+                onClick = (event: any) => {
 
-      if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
-        return;
-      }
+                  if (isModifiedEvent(event)) return;
+                  if (!isLeftClickEvent(event)) return;
+                  if (event.defaultPrevented === true) return;
 
-      if (event.defaultPrevented === true) {
-        return;
-      }
+                  event.preventDefault();
+                  history.push(to);
+                },
+                ...restProps,
+              }: PropTypes) => {
 
-      event.preventDefault();
-      history.push(to);
-    }}
-  >
-    {children}
-  </a>
-);
+  const props = {
+    ...(tagName === 'a' ? {href: to} : null),
+    ...restProps,
+  };
+
+  return React.createElement(tagName, props, children);
+};
 
 export default Link;
