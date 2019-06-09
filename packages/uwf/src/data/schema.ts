@@ -10,8 +10,10 @@
 import { DocumentNode } from 'graphql';
 import merge from 'lodash.merge';
 
-import schemaDeps from '../../__generated__/schemaDeps';
-import graphqlDeps from '../../__generated__/graphqlDeps';
+import serverSchemaDeps from '../../__generated__/serverSchemaDeps';
+import serverGraphqlDeps from '../../__generated__/serverGraphqlDeps';
+import clientSchemaDeps from '../../__generated__/clientSchemaDeps';
+import clientGraphqlDeps from '../../__generated__/clientGraphqlDeps';
 
 const SchemaDefinition = `
   type Query { _: Boolean }
@@ -25,15 +27,16 @@ const SchemaDefinition = `
   }
 `;
 
-const resolvers = merge.apply(null, [{},
-  ...schemaDeps.map(([module, relPath]) => {
-    return module.schema && module.resolvers;
-  }).filter(e => Boolean(e))
+const resolvers = merge.apply(null, [
+  {},
+  ...serverSchemaDeps.map(([module]) => module.resolvers).filter(Boolean),
+  ...clientSchemaDeps.map(([module]) => module.resolvers).filter(Boolean),
 ]);
 
 const schema = [
   SchemaDefinition,
-  ...schemaDeps.map(([module, relPath]) => module.schema).filter(s => Boolean(s)),
+  ...serverSchemaDeps.map(([module]) => module.schema).filter(Boolean),
+  ...clientSchemaDeps.map(([module]) => module.schema).filter(Boolean),
 ];
 
 export default {

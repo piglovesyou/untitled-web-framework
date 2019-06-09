@@ -6,12 +6,11 @@ import merge from 'lodash.merge';
 import gql from 'graphql-tag';
 import createCache from './createCache';
 
-import schemaDeps from '../../../__generated__/schemaDeps';
+import schemaDeps from '../../../__generated__/clientSchemaDeps';
 
-const clientSchemaModules = schemaDeps.map(([module]) => module).filter(m => m.clientSchema);
-const clientSchema = gql(clientSchemaModules.map(m => m.clientSchema).join('\n'));
-const clientDefaults = merge.apply(null, [{}, ...clientSchemaModules.map(m => m.defaults || {})]);
-const clientResolvers = merge.apply(null, [{}, ...clientSchemaModules.map(m => m.resolvers)]);
+const clientSchema = gql(schemaDeps.map(([m]) => m.schema).join('\n'));
+const clientDefaults = merge.apply(null, [{}, ...schemaDeps.map(([m]) => m.defaults).filter(Boolean)]);
+const clientResolvers = merge.apply(null, [{}, ...schemaDeps.map(([m]) => m.resolvers).filter(Boolean)]);
 
 export default function createApolloClient(
   schema: SchemaLink.Options,

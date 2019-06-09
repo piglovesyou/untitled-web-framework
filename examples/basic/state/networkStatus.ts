@@ -20,7 +20,7 @@ export const resolvers = {
   },
 };
 
-export const clientSchema = `
+export const schema = `
   type NetworkStatus {
     isConnected: Boolean!
   }
