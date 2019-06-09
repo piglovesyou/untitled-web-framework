@@ -34,33 +34,9 @@ function buildRouteChildScript(
 function buildRoutesScript(pathInfoArray: PathInfo[]): string {
   return `/* Auto-generated. Do not edit. */
 
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-present Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
-/* eslint-disable global-require */ 
-// The top-level (parent) route
-import { Route } from 'universal-router';
-
-import defaultRouteAction from '../tools/routes/defaultRouteAction';
-
-const routes = {
-  path: '',
-
-  // Keep in mind, routes are evaluated in order
-  children: [
-  
-  ${ pathInfoArray.map(buildRouteChildScript).join('') }
-  
-  ],
-
-  action: defaultRouteAction,
-};
+const routes = [
+${ pathInfoArray.map(buildRouteChildScript).join('') }
+];
   
 export default routes;
 `;

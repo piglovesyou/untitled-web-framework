@@ -9,8 +9,32 @@
 
 import React from 'react';
 import UniversalRouter from 'universal-router';
-import routes from '../__generated__/routesDeps';
+import children from '../__generated__/routesDeps';
 import Page from "./components/Page/Page";
+import { Route } from 'universal-router';
+// import defaultRouteAction from '../tools/routes/defaultRouteAction';
+
+async function action({ next }: any) {
+  // Execute each child route until one of them return the result
+  const route = await next();
+
+  if (!route) {
+    debugger;
+    return;
+  }
+
+  // Provide default values for title, description etc.
+  route.title = `${route.title || 'Untitled Page'} - www.reactstarterkit.com`;
+  route.description = route.description || '';
+
+  return route;
+}
+
+const routes: Route = {
+  path: '',
+  children,
+  action,
+};
 
 export default new UniversalRouter(routes, {
   resolveRoute(context, params) {
