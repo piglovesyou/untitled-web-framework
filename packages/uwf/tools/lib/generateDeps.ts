@@ -5,18 +5,19 @@ import { genDir, webDir } from "./dirs";
 import getFileNames from "./getFileNames";
 
 const { writeFile } = promises;
-const fileDepthDelimiter = '$';
 
 type FileInfo = [string, string, string];
 
-function buildBindSchemaScript(schemaInfoArray: FileInfo[]) {
-  return `/* Auto generated file. Don't edit this file. */
+function buildBindSchemaScript(schemaInfoArray: FileInfo[], moduleType: string) {
+  return `/* Auto-generated. Do not edit. */
 
 ${ schemaInfoArray.reduce((acc, [modulePath, displayPath, varName]) => {
     return `${ acc }import * as ${ varName } from '${ modulePath }';
 `;
   }, '') }
-const importedModules = [
+import { ${moduleType} } from '../types';
+
+const importedModules: ${moduleType}[] = [
   ${ schemaInfoArray.map(([modulePath, displayPath, varName]) => {
     return `[${ varName }, '${ displayPath }']`;
   }).join(', \n  ') }
@@ -46,10 +47,14 @@ function createFileInfo(fileName: string): FileInfo {
 export default async function generateDeps(
   globPattern: string,
   fileBaseNameToGenerate: string,
+  moduleType: string,
 ) {
   const fileNames = await getFileNames(globPattern);
 
-  const scriptContent = buildBindSchemaScript(fileNames.map(createFileInfo));
+  const scriptContent = buildBindSchemaScript(
+    fileNames.map(createFileInfo),
+    moduleType,
+  );
 
   const fileName = fileBaseNameToGenerate + '.ts';
 

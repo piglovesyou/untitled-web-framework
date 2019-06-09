@@ -32,7 +32,7 @@ function buildRouteChildScript(
 }
 
 function buildRoutesScript(pathInfoArray: PathInfo[]): string {
-  return `/* Auto generated file. Don't edit this file. */
+  return `/* Auto-generated. Do not edit. */
 
 /**
  * React Starter Kit (https://www.reactstarterkit.com/)

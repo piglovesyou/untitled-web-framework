@@ -3,12 +3,8 @@ import { from } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { HttpLink } from 'apollo-link-http';
 import apolloLogger from 'apollo-link-logger';
-import gql from 'graphql-tag';
+import { clientResolvers, clientSchema } from "./clientSchema";
 import createCache from './createCache';
-import {
-  resolvers as clientResolvers,
-  schema as clientSchema,
-} from '../../data/graphql/OnMemoryState/schema';
 
 export default function createApolloClient() {
   // Restore cache defaults to make the same one in server.js
@@ -19,10 +15,10 @@ export default function createApolloClient() {
       if (graphQLErrors)
         graphQLErrors.map(({ message, locations, path }) =>
           console.warn(
-            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+            `[GraphQL error]: Message: ${ message }, Location: ${ locations }, Path: ${ path }`,
           ),
         );
-      if (networkError) console.warn(`[Network error]: ${networkError}`);
+      if (networkError) console.warn(`[Network error]: ${ networkError }`);
     }),
     ...(__DEV__ ? [apolloLogger] : []),
     new HttpLink({
@@ -35,7 +31,7 @@ export default function createApolloClient() {
     // @ts-ignore
     link,
     cache,
-    typeDefs: gql(clientSchema),
+    typeDefs: clientSchema,
     resolvers: clientResolvers,
     queryDeduplication: true,
     connectToDevTools: true,

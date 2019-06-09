@@ -11,9 +11,9 @@ import { DocumentNode } from 'graphql';
 import merge from 'lodash.merge';
 
 import serverSchemaDeps from '../../__generated__/serverSchemaDeps';
-import serverGraphqlDeps from '../../__generated__/serverGraphqlDeps';
+// import serverGraphqlDeps from '../../__generated__/';
 import clientSchemaDeps from '../../__generated__/clientSchemaDeps';
-import clientGraphqlDeps from '../../__generated__/clientGraphqlDeps';
+// import clientGraphqlDeps from '../../__generated__/clientGraphqlDeps';
 
 const SchemaDefinition = `
   type Query { _: Boolean }
@@ -27,6 +27,7 @@ const SchemaDefinition = `
   }
 `;
 
+// @ts-ignore
 const resolvers = merge.apply(null, [
   {},
   ...serverSchemaDeps.map(([module]) => module.resolvers).filter(Boolean),

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-import { HomeNews_reactjsGetAllNews } from '../../../../routes/home/__generated__/HomeNews';
+import { ReactJsNewsItem } from "../../../../../../../examples/basic/__generated__/dataBinders";
 
 export const schema = [
   `
@@ -36,8 +36,8 @@ const url =
   'https://api.rss2json.com/v1/api.json' +
   '?rss_url=https%3A%2F%2Freactjsnews.com%2Ffeed.xml';
 
-let items: HomeNews_reactjsGetAllNews[] = [];
-let lastFetchTask: Promise<HomeNews_reactjsGetAllNews[]> | null;
+let items: ReactJsNewsItem[] = [];
+let lastFetchTask: Promise<ReactJsNewsItem[]> | null;
 let lastFetchTime = Number(new Date(1970, 0, 1));
 
 export const resolvers = {

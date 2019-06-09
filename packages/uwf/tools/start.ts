@@ -73,10 +73,10 @@ let server: Application;
 async function start() {
   if (server) return server;
 
-  await generateDeps('data/**/*.ts', 'serverSchemaDeps');
-  await generateDeps('data/**/*.graphql', 'serverGraphqlDeps');
-  await generateDeps('state/**/*.ts', 'clientSchemaDeps');
-  await generateDeps('state/**/*.graphql', 'clientGraphqlDeps');
+  await generateDeps('data/**/*.ts', 'serverSchemaDeps', 'SchemaDeps');
+  // await generateDeps('data/**/*.graphql', 'serverGraphqlDeps', 'GraphqlDeps');
+  await generateDeps('state/**/*.ts', 'clientSchemaDeps', 'ClientSchemaDeps');
+  // await generateDeps('state/**/*.graphql', 'clientGraphqlDeps', 'GraphqlDeps');
   await generateRoutesDeps();
 
   server = express();
@@ -172,6 +172,7 @@ async function start() {
 
   server.use((req: Request, res: Response) => {
     appPromise
+      // @ts-ignore
       .then(() => app.handle(req, res))
       .catch(error => console.error(error));
   });
