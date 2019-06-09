@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server';
 import getPort from 'get-port';
 import path from 'path';
 import rimraf from 'rimraf';
-import { libDir, webDir } from "./lib/dirs";
+import { genDir, libDir, userDir } from "./lib/dirs";
 import runWebpack from './lib/runWebpack';
 import webpackConfig from './webpack.config';
 
@@ -15,7 +15,7 @@ const [, serverConfig] = webpackConfig;
  */
 export default async function codegen() {
   const promiseRemoveOldTypes = new Promise(resolve =>
-    rimraf(path.resolve(webDir, '{./,src/**/}__generated__'), resolve),
+    rimraf(path.resolve(userDir, '{./,src/**/}__generated__'), resolve),
   );
 
 
@@ -50,9 +50,9 @@ export default async function codegen() {
   await generate(
     {
       schema: `http://localhost:${port}/graphql`,
-      documents: path.join(webDir, '**/*.graphql'),
+      documents: path.join(userDir, '**/*.graphql'),
       generates: {
-        [path.join(webDir, '__generated__/dataBinders.tsx')]: {
+        [path.join(genDir, 'dataBinders.tsx')]: {
           plugins: [
             'typescript',
             'typescript-operations',

@@ -1,7 +1,7 @@
 import { promises } from 'fs';
 const { writeFile } = promises;
 import path from 'path';
-import { genDir, webDir } from '../lib/dirs';
+import { genDir, userDir } from '../lib/dirs';
 import getFileNames from "../lib/getFileNames";
 
 type PathInfo = {
@@ -51,7 +51,7 @@ function createpathInfo(f: string): PathInfo {
   const file = path.basename(f);
   let base = path.basename(f, ext);
 
-  let routePath = path.relative(webDir, path.join(dir, base)).slice('routes'.length);
+  let routePath = path.relative(userDir, path.join(dir, base)).slice('routes'.length);
   routePath = omitIndex(routePath) || '/';
 
   const chunkName = routePath.split('/')[1] || 'home';

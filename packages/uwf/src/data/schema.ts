@@ -10,10 +10,10 @@
 import { DocumentNode } from 'graphql';
 import merge from 'lodash.merge';
 
-import serverSchemaDeps from '../../__generated__/serverSchemaDeps';
-// import serverGraphqlDeps from '../../__generated__/';
-import clientSchemaDeps from '../../__generated__/clientSchemaDeps';
-// import clientGraphqlDeps from '../../__generated__/clientGraphqlDeps';
+import serverSchemaDeps from '__userDir__/__generated__/serverSchemaDeps';
+// import serverGraphqlDeps from '__userDir__/__generated__/';
+import clientSchemaDeps from '__userDir__/__generated__/clientSchemaDeps';
+// import clientGraphqlDeps from '__userDir__/__generated__/clientGraphqlDeps';
 
 const SchemaDefinition = `
   type Query { _: Boolean }

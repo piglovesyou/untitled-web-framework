@@ -1,7 +1,7 @@
 import { promises } from 'fs';
 import path from 'path';
 import createMD5Hash from "./createMD5Hash";
-import { genDir, webDir } from "./dirs";
+import { genDir, userDir } from "./dirs";
 import getFileNames from "./getFileNames";
 
 const { writeFile } = promises;
@@ -28,7 +28,7 @@ export default importedModules;
 }
 
 function createFileInfo(fileName: string): FileInfo {
-  const displayPath = path.relative(webDir, fileName);
+  const displayPath = path.relative(userDir, fileName);
   const varName = '$' + createMD5Hash(displayPath);
   let modulePath = path.relative(genDir, fileName);
   const ext = path.extname(modulePath);

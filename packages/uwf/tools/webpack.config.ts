@@ -14,7 +14,7 @@ import WebpackAssetsManifest from 'webpack-assets-manifest';
 import nodeExternals from 'webpack-node-externals';
 import cssnano from 'cssnano';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import { genDir, webDir } from "./lib/dirs";
+import { genDir, userDir } from "./lib/dirs";
 import overrideRules from './lib/overrideRules';
 import pkg from '../package.json';
 import postcssConfig from './postcss.config';
@@ -73,7 +73,7 @@ const config = {
           SRC_DIR,
           resolvePath('tools'),
           genDir,
-          webDir,
+          userDir,
         ],
         loader: 'babel-loader',
         options: {
@@ -143,8 +143,8 @@ const config = {
           {
             exclude: [
               SRC_DIR,
-              path.join(webDir, 'routes'),
-              path.join(webDir, 'components'),
+              path.join(userDir, 'routes'),
+              path.join(userDir, 'components'),
             ],
             loader: 'css-loader',
             options: {
@@ -154,8 +154,8 @@ const config = {
           {
             exclude: [
               SRC_DIR,
-              path.join(webDir, 'routes'),
-              path.join(webDir, 'components'),
+              path.join(userDir, 'routes'),
+              path.join(userDir, 'components'),
             ],
             loader: 'postcss-loader',
             options: {
@@ -171,8 +171,8 @@ const config = {
           {
             include: [
               SRC_DIR,
-              path.join(webDir, 'routes'),
-              path.join(webDir, 'components'),
+              path.join(userDir, 'routes'),
+              path.join(userDir, 'components'),
             ],
             loader: 'css-loader',
             options: {
@@ -298,6 +298,7 @@ const config = {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
       'uwf/withStyles': resolvePath('./withStyles'),
+      '__userDir__': userDir,
     }
   },
 
