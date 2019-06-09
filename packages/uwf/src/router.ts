@@ -10,12 +10,10 @@
 import React from 'react';
 import UniversalRouter from 'universal-router';
 import children from '../__generated__/routesDeps';
-import Page from "./components/Page/Page";
 import { Route } from 'universal-router';
-// import defaultRouteAction from '../tools/routes/defaultRouteAction';
 
-async function action({ next }: any) {
-  // Execute each child route until one of them return the result
+async function action(context: any) {
+  const {next} = context;
   const route = await next();
 
   if (!route) {
@@ -41,11 +39,8 @@ export default new UniversalRouter(routes, {
     if (typeof context.route.load === 'function') {
       return context.route
         .load()
-        .then(({module, chunkName, ext}: any) => {
-          const component = ext === '.md'
-              ? React.createElement(Page, module.default)
-              : React.createElement(module.default)
-          ;
+        .then(({module, chunkName}: any) => {
+          const component = React.createElement(module.default);
           return {
             chunks: [chunkName],
             title: module.title,
