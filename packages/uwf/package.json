@@ -11,6 +11,7 @@
     "Firefox ESR",
     "not ie < 9"
   ],
+  "main": "src/exports.ts",
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
     "@piglovesyou/isomorphic-style-loader": "^4.1.1",

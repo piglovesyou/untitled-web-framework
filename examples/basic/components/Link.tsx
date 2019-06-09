@@ -19,8 +19,8 @@ function isModifiedEvent(event: MouseEvent) {
 }
 
 type PropTypes = {
-  tagName: string;
   to: string;
+  tagName?: string;
   onClick?: Function;
   children?: ReactNode;
   className?: string;
