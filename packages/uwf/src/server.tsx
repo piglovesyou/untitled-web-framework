@@ -18,7 +18,7 @@ import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import { getDataFromTree } from 'react-apollo';
-import createApolloClient from './core/createApolloClient/createApolloClient.server';
+import createApolloClient from './createApolloClient.server';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './components/error/ErrorPage';
