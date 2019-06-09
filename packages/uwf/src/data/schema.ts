@@ -25,11 +25,11 @@ const SchemaDefinition = `
   }
 `;
 
-const resolvers = merge.apply(null,
-  schemaDeps.map(([module, relPath]) => {
-    return module.resolvers && module.resolvers;
+const resolvers = merge.apply(null, [{},
+  ...schemaDeps.map(([module, relPath]) => {
+    return module.schema && module.resolvers;
   }).filter(e => Boolean(e))
-);
+]);
 
 const schema = [
   SchemaDefinition,
