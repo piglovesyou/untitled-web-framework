@@ -7,6 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+import { SpawnOptions } from "child_process";
 import path from 'path';
 import fetch from 'node-fetch';
 import { spawn } from './lib/cp';
@@ -38,7 +39,7 @@ const remote = {
 //   website: `http://<app>.azurewebsites.net`,
 // };
 
-const options = {
+const options: SpawnOptions = {
   cwd: path.resolve(__dirname, '../build'),
   stdio: ['ignore', 'inherit', 'inherit'],
 };

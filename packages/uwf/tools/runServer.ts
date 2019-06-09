@@ -34,8 +34,8 @@ function runServer(): Promise<ChildProcess> {
 
       if (match) {
         server.host = match[1];
-        server.stdout.removeListener('data', onStdOut);
-        server.stdout.on('data', x => process.stdout.write(x));
+        server.stdout!.removeListener('data', onStdOut);
+        server.stdout!.on('data', x => process.stdout.write(x));
         pending = false;
         resolve(server);
       }
@@ -59,8 +59,8 @@ function runServer(): Promise<ChildProcess> {
       });
     }
 
-    server.stdout.on('data', onStdOut);
-    server.stderr.on('data', x => process.stderr.write(x));
+    server.stdout!.on('data', onStdOut);
+    server.stderr!.on('data', x => process.stderr.write(x));
 
     return server;
   });
