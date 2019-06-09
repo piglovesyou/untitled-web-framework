@@ -73,9 +73,9 @@ let server: Application;
 async function start() {
   if (server) return server;
 
-  await generateDeps('data/**/*.ts', 'serverSchemaDeps', 'SchemaDeps');
+  await generateDeps('data/**/*.ts', 'serverSchemaDeps', 'SchemaInfo');
   // await generateDeps('data/**/*.graphql', 'serverGraphqlDeps', 'GraphqlDeps');
-  await generateDeps('state/**/*.ts', 'clientSchemaDeps', 'ClientSchemaDeps');
+  await generateDeps('state/**/*.ts', 'clientSchemaDeps', 'ClientSchemaInfo');
   // await generateDeps('state/**/*.graphql', 'clientGraphqlDeps', 'GraphqlDeps');
   await generateRoutesDeps();
 
