@@ -24,7 +24,7 @@ export default async function codegen() {
   const promiseCompileSchemaJs = await runWebpack(
     {
       ...serverConfig,
-      entry: path.join(libDir, 'src/data/schema'),
+      entry: path.join(libDir, 'src/schema'),
       output: {
         path: serverConfig.output.path,
         filename: 'schema.js',

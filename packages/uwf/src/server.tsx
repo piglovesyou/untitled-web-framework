@@ -26,7 +26,7 @@ import errorPageStyle from './components/error/ErrorPage.css';
 import passport from './passport';
 import router from './router';
 // import models from './data/models';
-import schema from './data/schema';
+import schema from './schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 // @ts-ignore
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
