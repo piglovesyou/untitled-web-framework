@@ -22,7 +22,7 @@ function buildRouteChildScript(
   return `
   {
     path: '${ routePath }',
-    load: async () => ({
+    load: async (): Promise<RouteInfo> => ({
       module: await import(/* webpackChunkName: '${ chunkName }' */ '${ modulePath }'),
       chunkName: '${ chunkName }',
       ext: '${ ext }',
@@ -33,6 +33,8 @@ function buildRouteChildScript(
 
 function buildRoutesScript(pathInfoArray: PathInfo[]): string {
   return `/* Auto-generated. Do not edit. */
+
+import { RouteInfo } from '../types';
 
 const routes = [
 ${ pathInfoArray.map(buildRouteChildScript).join('') }

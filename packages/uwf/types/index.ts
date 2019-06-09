@@ -1,3 +1,4 @@
+import {ComponentType} from "react";
 
 export type SchemaDepsBase = {
   schema: string,
@@ -15,3 +16,12 @@ export type SchemaInfo = ModuleInfo<SchemaDepsBase>;
 export type ClientSchemaInfo = ModuleInfo<ClientSchemaDeps>;
 
 export type GraphqlInfo = ModuleInfo<string>;
+
+export type RouteInfo = {
+  module: {
+    title: string,
+    default: ComponentType,
+  },
+  chunkName: string,
+  ext: string,
+};

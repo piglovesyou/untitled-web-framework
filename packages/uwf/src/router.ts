@@ -41,7 +41,6 @@ export default new UniversalRouter(routes, {
     if (typeof context.route.load === 'function') {
       return context.route
         .load()
-        // .then((action: any) => action.default(context, params));
         .then(({module, chunkName, ext}: any) => {
           const component = ext === '.md'
               ? React.createElement(Page, module.default)
