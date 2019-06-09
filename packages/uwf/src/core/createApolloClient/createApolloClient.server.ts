@@ -5,11 +5,13 @@ import { SchemaLink } from 'apollo-link-schema';
 import merge from 'lodash.merge';
 import gql from 'graphql-tag';
 import createCache from './createCache';
-import {
-  resolvers as clientResolvers,
-  schema as clientSchema,
-  defaults as cacheDefaults,
-} from '../../data/graphql/OnMemoryState/schema';
+
+import schemaDeps from '../../../__generated__/schemaDeps';
+
+const clientSchemaModules = schemaDeps.map(([module]) => module).filter(m => m.clientSchema);
+const clientSchema = gql(clientSchemaModules.map(m => m.clientSchema).join('\n'));
+const clientDefaults = merge.apply(null, [{}, ...clientSchemaModules.map(m => m.defaults || {})]);
+const clientResolvers = merge.apply(null, [{}, ...clientSchemaModules.map(m => m.resolvers)]);
 
 export default function createApolloClient(
   schema: SchemaLink.Options,
@@ -18,7 +20,7 @@ export default function createApolloClient(
   const cache = createCache();
 
   cache.writeData({
-    data: merge(cacheDefaults, partialCacheDefaults),
+    data: merge({}, clientDefaults, partialCacheDefaults),
   });
 
   const link = from([
@@ -38,7 +40,7 @@ export default function createApolloClient(
     // @ts-ignore
     link,
     cache,
-    typeDefs: gql(clientSchema),
+    typeDefs: clientSchema,
     resolvers: clientResolvers,
     ssrMode: true,
     queryDeduplication: true,
