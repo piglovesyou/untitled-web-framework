@@ -8,8 +8,7 @@
  */
 
 import React, { ReactNode } from 'react';
-// TODO: make it loadable by 'uwf/history'. It should be a singleton too
-import history from 'uwf/src/history';
+import {history} from 'uwf';
 
 function isLeftClickEvent(event: MouseEvent) {
   return event.button === 0;
