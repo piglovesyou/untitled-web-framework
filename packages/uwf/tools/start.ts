@@ -73,8 +73,10 @@ let server: Application;
 async function start() {
   if (server) return server;
 
-  await generateDeps('graphql/**/*.ts', 'schemaDeps');
-  await generateDeps('graphql/**/*.ts', 'graphqlDeps');
+  await generateDeps('data/**/*.ts', 'serverSchemaDeps');
+  await generateDeps('data/**/*.graphql', 'serverGraphqlDeps');
+  await generateDeps('state/**/*.ts', 'clientSchemaDeps');
+  await generateDeps('state/**/*.graphql', 'clientGraphqlDeps');
   await generateRoutesDeps();
 
   server = express();
