@@ -39,7 +39,7 @@ const Link = ({
                   event.preventDefault();
                   history.push(to);
                 },
-                ...restProps,
+                ...restProps
               }: PropTypes) => {
 
   const props = {
