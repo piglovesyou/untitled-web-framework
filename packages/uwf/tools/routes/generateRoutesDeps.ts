@@ -54,7 +54,7 @@ function createpathInfo(f: string): PathInfo {
   let routePath = path.relative(webDir, path.join(dir, base)).slice('routes'.length);
   routePath = omitIndex(routePath) || '/';
 
-  const chunkName = routePath.split('/')[0] || 'home';
+  const chunkName = routePath.split('/')[1] || 'home';
   // const routePath = path.join('/', relDir, base);
   const modulePath = path.join(
     path.relative(genDir, dir),
