@@ -6,7 +6,8 @@
   "private": true,
   "devDependencies": {},
   "scripts": {
-    "start": "uwf start"
+    "start": "uwf start",
+    "codegen": "uwf codegen"
   },
   "dependencies": {
     "apollo-client": "^2.6.1",

@@ -2,8 +2,9 @@ import { generate } from '@graphql-codegen/cli';
 import { ApolloServer } from 'apollo-server';
 import getPort from 'get-port';
 import path from 'path';
-import rimraf from 'rimraf';
+// import rimraf from 'rimraf';
 import { genDir, libDir, userDir } from "./lib/dirs";
+import prepareDeps from "./lib/prepareDeps";
 import runWebpack from './lib/runWebpack';
 import webpackConfig from './webpack.config';
 
@@ -14,12 +15,11 @@ const [, serverConfig] = webpackConfig;
  * a running GraphQL server, it launches a server for the use.
  */
 export default async function codegen() {
-  const promiseRemoveOldTypes = new Promise(resolve =>
-    rimraf(path.resolve(userDir, '{./,src/**/}__generated__'), resolve),
-  );
+  // const promiseRemoveOldTypes = new Promise(resolve =>
+  //   rimraf(path.resolve(userDir, '{./,src/**/}__generated__'), resolve),
+  // );
 
-
-  // TODO: Generate schema dependency information
+  await prepareDeps();
 
   const promiseCompileSchemaJs = await runWebpack(
     {
@@ -38,7 +38,7 @@ export default async function codegen() {
 
   const [port] = await Promise.all([
     promisePort,
-    promiseRemoveOldTypes,
+    // promiseRemoveOldTypes,
     promiseCompileSchemaJs,
   ]);
 
