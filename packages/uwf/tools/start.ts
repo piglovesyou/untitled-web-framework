@@ -81,6 +81,7 @@ async function start() {
 
   server = express();
   server.use(errorOverlayMiddleware());
+  // @ts-ignore
   server.use(express.static(path.resolve(__dirname, '../public')));
 
   // Configure client-side hot module replacement

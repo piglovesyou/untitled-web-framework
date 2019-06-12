@@ -58,6 +58,7 @@ app.set('trust proxy', config.trustProxy);
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
+// @ts-ignore
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));

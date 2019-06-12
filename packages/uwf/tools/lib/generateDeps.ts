@@ -15,7 +15,7 @@ ${ schemaInfoArray.reduce((acc, [modulePath, displayPath, varName]) => {
     return `${ acc }import * as ${ varName } from '${ modulePath }';
 `;
   }, '') }
-import { ${moduleType} } from '../types';
+import { ${moduleType} } from 'uwf/types';
 
 const importedModules: ${moduleType}[] = [
   ${ schemaInfoArray.map(([modulePath, displayPath, varName]) => {
