@@ -49,17 +49,22 @@ function createpathInfo(f: string): PathInfo {
   const dir = path.dirname(f);
   const ext = path.extname(f);
   const file = path.basename(f);
-  let base = path.basename(f, ext);
+  const base = path.basename(f, ext);
 
-  let routePath = path.relative(userDir, path.join(dir, base)).slice('routes'.length);
+  let routePath = path.relative(
+    userDir,
+    // TODO: Replace intermediate paths like "/_thisone/x" too?
+    path.join(dir, base.replace(/^_/, ':')),
+  ).slice('routes'.length);
   routePath = omitIndex(routePath) || '/';
 
   const chunkName = routePath.split('/')[1] || 'home';
-  // const routePath = path.join('/', relDir, base);
+
   const modulePath = path.join(
     path.relative(genDir, dir),
     ext.startsWith('.ts') ? base : file,
   );
+
   return { routePath, modulePath, chunkName, ext };
 };
 
