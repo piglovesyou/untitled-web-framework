@@ -1,8 +1,8 @@
 import { promises } from 'fs';
 const { writeFile } = promises;
 import path from 'path';
-import { genDir, userDir } from '../lib/dirs';
-import getFileNames from "../lib/getFileNames";
+import { genDir, userDir } from './dirs';
+import getFileNames from "./getFileNames";
 
 type PathInfo = {
   routePath: string,

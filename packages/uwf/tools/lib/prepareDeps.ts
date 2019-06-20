@@ -1,4 +1,4 @@
-import generateRoutesDeps from "../routes/generateRoutesDeps";
+import generateRoutesDeps from "./generateRoutesDeps";
 import generateDeps from "./generateDeps";
 
 export default async function prepareDeps() {
