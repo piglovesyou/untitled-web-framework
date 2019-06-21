@@ -8,6 +8,7 @@
  */
 
 import { DocumentNode } from 'graphql';
+import gql from "graphql-tag";
 import merge from 'lodash.merge';
 
 import serverSchemaDeps from '__userDir__/__generated__/serverSchemaDeps';
@@ -15,15 +16,31 @@ import serverSchemaDeps from '__userDir__/__generated__/serverSchemaDeps';
 import clientSchemaDeps from '__userDir__/__generated__/clientSchemaDeps';
 // import clientGraphqlDeps from '__userDir__/__generated__/clientGraphqlDeps';
 
+const hasObjectTypeExtension = (typeDefs: DocumentNode, type: string) =>
+    typeDefs.definitions.some(
+      def => Boolean(def.kind === 'ObjectTypeExtension' && def.name.value === type)
+    );
+
+const [hasMutation, hasSubscription] = [...serverSchemaDeps, ...clientSchemaDeps]
+  .reduce((
+    [hasMutation, hasSubscription], [module]
+  ) => {
+    if (!module.schema) return [hasMutation, hasSubscription];
+    return [
+      hasMutation || hasObjectTypeExtension(gql(module.schema), 'Mutation'),
+      hasSubscription || hasObjectTypeExtension(gql(module.schema), 'Subscription'),
+    ];
+  }, [false, false]);
+
 const SchemaDefinition = `
-  type Query { _: Boolean }
-  type Mutation { _: Boolean }
-  type Subscription { _: Boolean }
+  type Query { }
+  ${hasMutation ? 'type Mutation { }' : ''}
+  ${hasSubscription ? 'type Subscription { }' : ''}
   
   schema {
     query: Query
-    mutation: Mutation
-    subscription: Subscription
+    ${hasMutation ? 'mutation: Mutation' : ''}
+    ${hasSubscription ? 'subscription: Subscription': ''}
   }
 `;
 
@@ -43,5 +60,6 @@ const schema = [
 export default {
   typeDefs: (schema as any) as DocumentNode[],
   resolvers,
+  parseOptions: { allowLegacySDLEmptyFields: true },
   // ...(__DEV__ ? { log: e => console.error(e.stack) } : {}),
 };

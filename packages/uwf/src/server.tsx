@@ -115,14 +115,12 @@ app.get(
 // https://github.com/graphql/express-graphql#options
 
 const server = new ApolloServer({
-  ...schema,
+  schema: makeExecutableSchema(schema),
   uploads: false,
   introspection: __DEV__,
   playground: __DEV__,
   debug: __DEV__,
   context: ({ req }: { req: Request }) => ({ req }),
-  // TODO: https://github.com/apollographql/apollo-server/issues/2799
-  // parseOptions: { allowLegacySDLEmptyFields: true },
 });
 server.applyMiddleware({ app });
 
