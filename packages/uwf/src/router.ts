@@ -17,7 +17,7 @@ async function action(context: any) {
   const route = await next();
 
   if (!route) {
-    debugger;
+    // debugger;
     return;
   }
 

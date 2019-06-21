@@ -14,7 +14,8 @@ import WebpackAssetsManifest from 'webpack-assets-manifest';
 import nodeExternals from 'webpack-node-externals';
 import cssnano from 'cssnano';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import { genDir, userDir } from "./lib/dirs";
+import { WebpackOptions } from "webpack/declarations/WebpackOptions";
+import { genDir, libDir, userDir } from "./lib/dirs";
 import overrideRules from './lib/overrideRules';
 import pkg from '../package.json';
 import postcssConfig from './postcss.config';
@@ -43,7 +44,7 @@ const staticAssetName = isDebug
 // client-side (client.js) and server-side (server.js) bundles
 // -----------------------------------------------------------------------------
 
-const config = {
+const config: WebpackOptions = {
   context: ROOT_DIR,
 
   mode: isDebug ? 'development' : 'production',
@@ -296,6 +297,11 @@ const config = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    modules: [
+      path.join(libDir, 'node_modules'),
+      path.join(userDir, 'node_modules'),
+      'node_modules',
+    ],
     alias: {
       'uwf/withStyles': resolvePath('./withStyles'),
       '__userDir__': userDir,
@@ -335,7 +341,7 @@ const config = {
 // Configuration for the client-side bundle (client.js)
 // -----------------------------------------------------------------------------
 
-const clientConfig = {
+const clientConfig: WebpackOptions = {
   ...config,
 
   name: 'client',
@@ -431,7 +437,7 @@ const clientConfig = {
 // Configuration for the server-side bundle (server.js)
 // -----------------------------------------------------------------------------
 
-const serverConfig = {
+const serverConfig: WebpackOptions = {
   ...config,
 
   name: 'server',
@@ -458,7 +464,7 @@ const serverConfig = {
   module: {
     ...config.module,
 
-    rules: overrideRules(config.module.rules, (rule: any) => {
+    rules: overrideRules(config.module!.rules, (rule: any) => {
       // Override babel-preset-env configuration for Node.js
       if (rule.loader === 'babel-loader') {
         return {
