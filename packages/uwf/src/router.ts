@@ -45,6 +45,7 @@ export default new UniversalRouter(routes, {
             chunks: [chunkName],
             title: module.title,
             component,
+            params,
           };
         });
     }
