@@ -48,13 +48,13 @@ declare module '*.css';
 declare module '*.md';
 declare module '*.png';
 declare module '*.graphql' {
-  /* eslint no-unused-vars:0 */
-  import { DocumentNode } from 'graphql';
-
-  /* eslint vars-on-top:0 */
-  /* eslint no-var:0 */
-  var d: DocumentNode;
-  /* eslint import/export:0 */
-  export default d;
+  // /* eslint no-unused-vars:0 */
+  // import { DocumentNode } from 'graphql';
+  //
+  // /* eslint vars-on-top:0 */
+  // /* eslint no-var:0 */
+  // var d: DocumentNode;
+  // /* eslint import/export:0 */
+  export default string;
 }
 declare module '!isomorphic-style-loader!*';

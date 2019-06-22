@@ -1,7 +1,7 @@
 import {ComponentType} from "react";
 
 export type SchemaDepsBase = {
-  schema: string,
+  schema?: string,
   resolvers?: Object,
 };
 
@@ -15,7 +15,7 @@ export type SchemaInfo = ModuleInfo<SchemaDepsBase>;
 
 export type ClientSchemaInfo = ModuleInfo<ClientSchemaDeps>;
 
-export type GraphqlInfo = ModuleInfo<string>;
+export type GraphqlDeps = ModuleInfo<{default: string}>;
 
 export type RouteInfo = {
   module: {

@@ -127,7 +127,8 @@ const config: WebpackOptions = {
       {
         test: reGraphql,
         exclude: /node_modules/,
-        loader: 'graphql-tag/loader',
+        loader: 'raw-loader',
+        // loader: 'graphql-tag/loader',
       },
 
       // Rules for Style Sheets
@@ -299,13 +300,14 @@ const config: WebpackOptions = {
     extensions: ['.ts', '.tsx', '.js', '.json'],
     modules: [
       path.join(libDir, 'node_modules'),
+      // TODO: should be erased
       path.join(userDir, 'node_modules'),
       'node_modules',
     ],
     alias: {
       'uwf/withStyles': resolvePath('./withStyles'),
       '__userDir__': userDir,
-    }
+    },
   },
 
   resolveLoader: {

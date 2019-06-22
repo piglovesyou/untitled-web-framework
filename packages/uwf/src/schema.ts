@@ -12,9 +12,9 @@ import gql from "graphql-tag";
 import merge from 'lodash.merge';
 
 import serverSchemaDeps from '__userDir__/__generated__/serverSchemaDeps';
-// import serverGraphqlDeps from '__userDir__/__generated__/';
+import serverGraphqlDeps from '__userDir__/__generated__/serverGraphqlDeps';
 import clientSchemaDeps from '__userDir__/__generated__/clientSchemaDeps';
-// import clientGraphqlDeps from '__userDir__/__generated__/clientGraphqlDeps';
+import clientGraphqlDeps from '__userDir__/__generated__/clientGraphqlDeps';
 
 const hasObjectTypeExtension = (typeDefs: DocumentNode, type: string) =>
     typeDefs.definitions.some(
@@ -55,6 +55,9 @@ const schema = [
   SchemaDefinition,
   ...serverSchemaDeps.map(([module]) => module.schema).filter(Boolean),
   ...clientSchemaDeps.map(([module]) => module.schema).filter(Boolean),
+  ...serverGraphqlDeps.map(([module]) => module.default),
+  ...clientGraphqlDeps.map(([module]) => module.default),
+
 ];
 
 export default {
