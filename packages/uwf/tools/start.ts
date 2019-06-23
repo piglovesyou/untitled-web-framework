@@ -72,7 +72,7 @@ let server: Application;
 async function start() {
   if (server) return server;
 
-  await prepareDeps();
+  await run(require('./codegen').default);
 
   server = express();
   server.use(errorOverlayMiddleware());

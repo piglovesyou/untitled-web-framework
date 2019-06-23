@@ -26,11 +26,12 @@ export default async function codegen() {
       ...serverConfig,
       entry: path.join(libDir, 'src/schema'),
       output: {
-        path: serverConfig.output.path,
+        path: serverConfig!.output!.path,
         filename: 'schema.js',
         libraryTarget: 'commonjs2',
       },
     },
+    // @ts-ignore
     serverConfig.stats,
   );
 
