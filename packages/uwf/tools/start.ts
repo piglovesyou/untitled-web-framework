@@ -15,7 +15,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
 import prepareDeps from "./lib/prepareDeps";
-import webpackConfig from './webpack.config';
+import webpackConfig, { BUILD_DIR } from './webpack.config';
 import run, { format } from './run';
 import clean from './clean';
 
@@ -146,12 +146,14 @@ async function start() {
   // https://github.com/glenjamin/webpack-hot-middleware
   server.use(webpackHotMiddleware(clientCompiler, { log: false }));
 
+  const serverScriptPath = path.join(BUILD_DIR, 'server');
+
   let app: Application;
   let hot: any;
   function reloadApp() {
-    delete require.cache[require.resolve('../build/server')];
+    delete require.cache[require.resolve(serverScriptPath)];
     // eslint-disable-next-line global-require
-    const compiled = require('../build/server');
+    const compiled = require(serverScriptPath);
     app = compiled.default;
     hot = compiled.hot;
   }

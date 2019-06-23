@@ -6,7 +6,7 @@ import path from 'path';
 import { genDir, libDir, userDir } from "./lib/dirs";
 import prepareDeps from "./lib/prepareDeps";
 import runWebpack from './lib/runWebpack';
-import webpackConfig from './webpack.config';
+import webpackConfig, { BUILD_DIR } from './webpack.config';
 
 const [, serverConfig] = webpackConfig;
 
@@ -44,7 +44,7 @@ export default async function codegen() {
   ]);
 
   // eslint-disable-next-line global-require, import/no-dynamic-require, import/no-unresolved
-  const builtSchema = require('../build/schema').default;
+  const builtSchema = require(path.join(BUILD_DIR, 'schema')).default;
   const server = new ApolloServer(builtSchema);
   const { server: httpServer } = await server.listen({ port });
 

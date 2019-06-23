@@ -23,7 +23,7 @@ import postcssConfig from './postcss.config';
 const ROOT_DIR = path.resolve(__dirname, '..');
 const resolvePath = (...args: string[]) => path.resolve(ROOT_DIR, ...args);
 const SRC_DIR = resolvePath('src');
-const BUILD_DIR = resolvePath('build');
+export const BUILD_DIR = path.join(userDir, 'build');
 
 const isDebug = !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose');
@@ -332,6 +332,7 @@ const config: WebpackOptions = {
     reasons: isDebug,
     timings: true,
     version: isVerbose,
+    errorDetails: true,
   },
 
   // Choose a developer tool to enhance debugging
