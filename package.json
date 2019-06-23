@@ -136,7 +136,8 @@
     "webpack-node-externals": "^1.7.2"
   },
   "scripts": {
-    "fix": "lerna run fix"
+    "fix": "lerna run fix",
+    "postinstall": "lerna bootstrap"
   },
   "dependencies": {
     "uwf": "file:packages/uwf"
