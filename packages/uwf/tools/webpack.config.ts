@@ -75,6 +75,7 @@ const config: WebpackOptions = {
           path.join(libDir, 'tools'),
           genDir,
           userDir,
+          path.join(libDir, 'dataBinders'),
         ],
         loader: 'babel-loader',
         options: {
