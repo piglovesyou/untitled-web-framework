@@ -9,7 +9,7 @@
 
 import React from 'react';
 import UniversalRouter from 'universal-router';
-import children from '__userDir__/__generated__/routesDeps';
+import children from './__generated__/routesDeps';
 import { Route } from 'universal-router';
 
 async function action(context: any) {

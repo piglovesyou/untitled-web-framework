@@ -11,10 +11,10 @@ import { DocumentNode } from 'graphql';
 import gql from "graphql-tag";
 import merge from 'lodash.merge';
 
-import serverSchemaDeps from '__userDir__/__generated__/serverSchemaDeps';
-import serverGraphqlDeps from '__userDir__/__generated__/serverGraphqlDeps';
-import clientSchemaDeps from '__userDir__/__generated__/clientSchemaDeps';
-import clientGraphqlDeps from '__userDir__/__generated__/clientGraphqlDeps';
+import serverSchemaDeps from './__generated__/serverSchemaDeps';
+import serverGraphqlDeps from './__generated__/serverGraphqlDeps';
+import clientSchemaDeps from './__generated__/clientSchemaDeps';
+import clientGraphqlDeps from './__generated__/clientGraphqlDeps';
 
 const hasObjectTypeExtension = (typeDefs: DocumentNode, type: string) =>
     typeDefs.definitions.some(

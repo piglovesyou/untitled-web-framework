@@ -516,7 +516,11 @@ const serverConfig: WebpackOptions = {
     './chunk-manifest.json',
     './asset-manifest.json',
     nodeExternals({
-      whitelist: [reStyle, reImage],
+      whitelist: [
+        reStyle,
+        reImage,
+        /^uwf\/?/,
+      ],
       modulesDir: path.join(libDir, '../../node_modules'),
     }),
   ],

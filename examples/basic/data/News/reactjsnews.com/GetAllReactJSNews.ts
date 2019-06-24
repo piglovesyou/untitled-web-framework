@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 
-import { ReactJsNewsItem } from '../../../__generated__/dataBinders'
+import { ReactJsNewsItem } from 'uwf/src/__generated__/dataBinders'
 
 export const schema = `
   type ReactJSNewsItem {
