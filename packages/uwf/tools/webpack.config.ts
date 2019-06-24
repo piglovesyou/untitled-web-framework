@@ -21,8 +21,8 @@ import pkg from '../package.json';
 import postcssConfig from './postcss.config';
 
 const ROOT_DIR = path.resolve(__dirname, '..');
-const resolvePath = (...args: string[]) => path.resolve(ROOT_DIR, ...args);
-const SRC_DIR = resolvePath('src');
+// const resolvePath = (...args: string[]) => path.resolve(ROOT_DIR, ...args);
+const SRC_DIR = path.join(libDir, 'src');
 export const BUILD_DIR = path.join(userDir, 'build');
 
 const isDebug = !process.argv.includes('--release');
@@ -50,7 +50,7 @@ const config: WebpackOptions = {
   mode: isDebug ? 'development' : 'production',
 
   output: {
-    path: resolvePath(BUILD_DIR, 'public/assets'),
+    path: path.join(BUILD_DIR, 'public/assets'),
     publicPath: '/assets/',
     pathinfo: isVerbose,
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
@@ -72,14 +72,14 @@ const config: WebpackOptions = {
         test: reScript,
         include: [
           SRC_DIR,
-          resolvePath('tools'),
+          path.join(libDir, 'tools'),
           genDir,
           userDir,
         ],
         loader: 'babel-loader',
         options: {
           // @piglovesyou: Necessary to track node_modules
-          cwd: ROOT_DIR,
+          cwd: libDir,
 
           // https://github.com/babel/babel-loader#options
           cacheDirectory: isDebug,
@@ -287,7 +287,7 @@ const config: WebpackOptions = {
         ? []
         : [
             {
-              test: resolvePath(
+              test: path.join(libDir,
                 'node_modules/react-deep-force-update/lib/index.js',
               ),
               loader: 'null-loader',
@@ -305,7 +305,7 @@ const config: WebpackOptions = {
       'node_modules',
     ],
     alias: {
-      'uwf/withStyles': resolvePath('./withStyles'),
+      'uwf/withStyles': path.join(libDir, './withStyles'),
       '__userDir__': userDir,
     },
   },
@@ -518,7 +518,7 @@ const serverConfig: WebpackOptions = {
     './asset-manifest.json',
     nodeExternals({
       whitelist: [reStyle, reImage],
-      modulesDir: resolvePath('../../node_modules'),
+      modulesDir: path.join(libDir, '../../node_modules'),
     }),
   ],
 
