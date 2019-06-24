@@ -7,6 +7,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "uwf start",
+    "build": "uwf build",
     "codegen": "uwf codegen"
   },
   "dependencies": {
