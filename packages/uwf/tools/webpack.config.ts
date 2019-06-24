@@ -304,9 +304,9 @@ const config: WebpackOptions = {
       path.join(userDir, 'node_modules'),
       'node_modules',
     ],
-    alias: {
-      '__userDir__': userDir,
-    },
+    // alias: {
+    //   '__userDir__': userDir,
+    // },
   },
 
   resolveLoader: {
