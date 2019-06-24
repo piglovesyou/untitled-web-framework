@@ -11,7 +11,7 @@ import React, { ComponentType } from 'react';
 import cx from 'classnames';
 import withStyles from 'uwf/withStyles';
 import s from './Navigation.css';
-import { Link } from 'uwf';
+import Link from 'uwf/Link';
 
 const Navigation: ComponentType<{}> = () => (
   <div className={s.root} role="navigation">

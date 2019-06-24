@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppContext } from "uwf";
+import AppContext from "uwf/AppContext";
 import Layout from "../../components/Layout/Layout";
 
 export const title = 'Posts';

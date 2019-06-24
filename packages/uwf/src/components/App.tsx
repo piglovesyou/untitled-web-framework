@@ -9,7 +9,7 @@
 
 import React, { ReactNode } from 'react';
 import { ApolloProvider } from 'react-apollo';
-import {StyleContext} from '../exports';
+import StyleContext from '@piglovesyou/isomorphic-style-loader/StyleContext';
 import AppContext, { AppContextTypes } from '../context';
 
 interface Props {

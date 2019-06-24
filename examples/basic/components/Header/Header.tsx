@@ -10,7 +10,7 @@
 import React from 'react';
 import withStyles from 'uwf/withStyles';
 import s from './Header.css';
-import { Link } from 'uwf';
+import Link from 'uwf/Link';
 import Navigation from '../Navigation';
 import logoUrl from './logo-small.png';
 import logoUrl2x from './logo-small@2x.png';

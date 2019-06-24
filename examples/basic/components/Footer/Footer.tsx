@@ -10,7 +10,7 @@
 import React, { FunctionComponent } from 'react';
 import withStyles from 'uwf/withStyles';
 import s from './Footer.css';
-import { Link } from 'uwf';
+import Link from 'uwf/Link';
 
 const Footer: FunctionComponent = () => (
   <div className={s.root}>
