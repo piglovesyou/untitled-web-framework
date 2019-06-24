@@ -45,11 +45,11 @@ const SchemaDefinition = `
 `;
 
 // @ts-ignore
-const resolvers = merge.apply(null, [
+const resolvers = merge(
   {},
   ...serverSchemaDeps.map(([module]) => module.resolvers).filter(Boolean),
   ...clientSchemaDeps.map(([module]) => module.resolvers).filter(Boolean),
-]);
+);
 
 const schema = [
   SchemaDefinition,
