@@ -1,5 +1,5 @@
 import React from 'react';
-import {withStyles} from 'uwf';
+import withStyles from 'uwf/withStyles';
 import { withHomeNews } from "uwf/dataBinders";
 import Layout from "../../components/Layout/Layout";
 import s from './index.css';

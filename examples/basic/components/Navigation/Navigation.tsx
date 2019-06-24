@@ -9,7 +9,7 @@
 
 import React, { ComponentType } from 'react';
 import cx from 'classnames';
-import {withStyles} from 'uwf';
+import withStyles from 'uwf/withStyles';
 import s from './Navigation.css';
 import { Link } from 'uwf';
 

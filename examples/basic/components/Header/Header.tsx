@@ -8,7 +8,7 @@
  */
 
 import React from 'react';
-import {withStyles} from 'uwf';
+import withStyles from 'uwf/withStyles';
 import s from './Header.css';
 import { Link } from 'uwf';
 import Navigation from '../Navigation';

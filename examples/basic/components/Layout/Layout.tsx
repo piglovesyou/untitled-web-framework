@@ -8,7 +8,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import {withStyles} from 'uwf';
+import withStyles from 'uwf/withStyles';
 
 // external-global styles must be imported in your JS.
 import normalizeCss from 'normalize.css';
