@@ -261,7 +261,7 @@ const config: WebpackOptions = {
       // Convert Markdown into HTML
       {
         test: /\.md$/,
-        loader: path.resolve(__dirname, './lib/markdown-loader'),
+        loader: path.resolve(libDir, 'tools/lib/markdown-loader'),
       },
 
       // Return public URL for all assets unless explicitly excluded
@@ -305,7 +305,7 @@ const config: WebpackOptions = {
       'node_modules',
     ],
     alias: {
-      'uwf/withStyles': path.join(libDir, './withStyles'),
+      'uwf/withStyles': path.join(libDir, 'withStyles'),
       '__userDir__': userDir,
     },
   },
@@ -351,7 +351,7 @@ const clientConfig: WebpackOptions = {
   target: 'web',
 
   entry: {
-    client: ['@babel/polyfill', './src/client'],
+    client: ['@babel/polyfill', path.join(libDir, 'src/client')],
   },
 
   plugins: [
@@ -447,7 +447,7 @@ const serverConfig: WebpackOptions = {
   target: 'node',
 
   entry: {
-    server: ['./src/server'],
+    server: [path.join(libDir, 'src/server')],
   },
 
   output: {
