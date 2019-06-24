@@ -45,7 +45,7 @@ const staticAssetName = isDebug
 // -----------------------------------------------------------------------------
 
 const config: WebpackOptions = {
-  context: ROOT_DIR,
+  context: userDir,
 
   mode: isDebug ? 'development' : 'production',
 
