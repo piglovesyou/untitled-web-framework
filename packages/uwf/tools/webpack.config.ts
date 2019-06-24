@@ -305,7 +305,6 @@ const config: WebpackOptions = {
       'node_modules',
     ],
     alias: {
-      'uwf/withStyles': path.join(libDir, 'withStyles'),
       '__userDir__': userDir,
     },
   },
