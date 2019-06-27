@@ -18,6 +18,7 @@ import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import { getDataFromTree } from 'react-apollo';
+import { userDir } from "uwf/tools/lib/dirs";
 import { AppContextTypes } from "./context";
 import createApolloClient from './createApolloClient.server';
 import App from './components/App';
@@ -60,7 +61,7 @@ app.set('trust proxy', config.trustProxy);
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
 // @ts-ignore
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static(path.resolve(userDir, 'public')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
