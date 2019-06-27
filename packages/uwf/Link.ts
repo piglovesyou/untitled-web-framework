@@ -1,2 +1,2 @@
-import Link from './src/components/Link';
+import Link from '@configure@/Link';
 export default Link;

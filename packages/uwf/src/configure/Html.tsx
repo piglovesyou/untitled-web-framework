@@ -9,7 +9,7 @@
 
 import React from 'react';
 import serialize from 'serialize-javascript';
-import config from '../config';
+import config from '@configure@/config';
 
 /* eslint-disable react/no-danger */
 

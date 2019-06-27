@@ -14,7 +14,7 @@ import deepForceUpdate from 'react-deep-force-update';
 import queryString from 'query-string';
 import gql from 'graphql-tag';
 import { createPath, Location } from 'history';
-import App from './components/App';
+import App from '@configure@/App';
 import history from './history';
 import { updateMeta } from './DOMUtils';
 import createApolloClient from '@configure@/createApolloClient.client';

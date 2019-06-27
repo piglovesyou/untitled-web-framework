@@ -32,7 +32,7 @@ const notFoundRoute = {
   path: '(.*)',
   load: async () => {
     const loaded = {
-      module: await import(/* webpackChunkName: 'not-found' */ './components/not-found/NotFound'),
+      module: await import(/* webpackChunkName: 'not-found' */ './configure/not-found/NotFound'),
       chunkName: 'not-found',
       ext: '.tsx',
     };

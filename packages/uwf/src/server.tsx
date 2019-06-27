@@ -21,10 +21,10 @@ import { getDataFromTree } from 'react-apollo';
 import { userDir } from "uwf/tools/lib/dirs";
 import { AppContextTypes } from "./context";
 import createApolloClient from '@configure@/createApolloClient.server';
-import App from './components/App';
-import Html from './components/Html';
-import { ErrorPageWithoutStyle } from './components/error/ErrorPage';
-import errorPageStyle from './components/error/ErrorPage.css';
+import App from '@configure@/App';
+import Html from '@configure@/Html';
+import { ErrorPageWithoutStyle } from './configure/error-page/ErrorPage';
+import errorPageStyle from './configure/error-page/ErrorPage.css';
 import passport from '@configure@/passport';
 import router from './router';
 // import models from './data/models';
@@ -32,7 +32,7 @@ import schema from './schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 // @ts-ignore
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
-import config from './config';
+import config from '@configure@/config';
 import createCache from '@configure@/createCache';
 import { clientDefaults, clientResolvers, clientTypeDefs } from "./clientSchema";
 
