@@ -305,13 +305,10 @@ const config: WebpackOptions = {
       path.join(userDir, 'node_modules'),
       'node_modules',
     ],
-    plugins: [new MultiAliasPlugin('described-resolve', {
-      name: '@configure@',
-      alias: [
-        path.join(userDir, 'configure'),
-        path.join(libDir, 'src/configure'),
-      ],
-    }, 'resolve')],
+    plugins: [new MultiAliasPlugin('described-resolve', [
+      { name: '@configure@', alias: path.join(userDir, 'configure') },
+      { name: '@configure@', alias: path.join(libDir, 'src/configure') },
+    ], 'resolve')],
   },
 
   resolveLoader: {

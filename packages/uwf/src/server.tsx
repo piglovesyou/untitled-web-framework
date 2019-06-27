@@ -25,7 +25,7 @@ import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './components/error/ErrorPage';
 import errorPageStyle from './components/error/ErrorPage.css';
-import passport from './passport';
+import passport from '@configure@/passport';
 import router from './router';
 // import models from './data/models';
 import schema from './schema';
