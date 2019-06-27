@@ -17,11 +17,17 @@ import { createPath, Location } from 'history';
 import App from './components/App';
 import history from './history';
 import { updateMeta } from './DOMUtils';
-import createApolloClient from './createApolloClient.client';
+import createApolloClient from '@configure@/createApolloClient.client';
 import router from './router';
 import { AppContextTypes } from './context';
+import { clientResolvers, clientTypeDefs } from "./clientSchema";
+import createCache from '@configure@/createCache';
 
-const apolloClient = createApolloClient();
+const apolloClient = createApolloClient({
+  clientTypeDefs,
+  clientResolvers,
+  apolloCache: createCache(),
+});
 
 // Enables critical path CSS rendering
 // https://github.com/kriasoft/isomorphic-style-loader

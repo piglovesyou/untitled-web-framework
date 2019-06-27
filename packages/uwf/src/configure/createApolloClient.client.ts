@@ -1,14 +1,24 @@
-import { ApolloClient } from 'apollo-client';
+import { ApolloClient, Resolvers } from 'apollo-client';
 import { from } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { HttpLink } from 'apollo-link-http';
 import apolloLogger from 'apollo-link-logger';
-import { clientResolvers, clientSchema } from "./clientSchema";
-import createCache from './createCache';
+import { DocumentNode } from 'graphql';
+import { ApolloCache } from 'apollo-cache';
 
-export default function createApolloClient() {
+type CliantApolloClientArgs = {
+  clientTypeDefs: DocumentNode,
+  clientResolvers: Resolvers,
+  apolloCache: ApolloCache<any>,
+};
+
+export default function createApolloClient({
+  clientTypeDefs,
+  clientResolvers,
+  apolloCache,
+}: CliantApolloClientArgs) {
   // Restore cache defaults to make the same one in server.js
-  const cache = createCache().restore(window.App.cache);
+  const cache = apolloCache.restore(window.App.cache);
 
   const link = from([
     onError(({ graphQLErrors, networkError }) => {
@@ -31,7 +41,7 @@ export default function createApolloClient() {
     // @ts-ignore
     link,
     cache,
-    typeDefs: clientSchema,
+    typeDefs: clientTypeDefs,
     resolvers: clientResolvers,
     queryDeduplication: true,
     connectToDevTools: true,

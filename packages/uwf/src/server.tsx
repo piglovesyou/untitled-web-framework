@@ -20,7 +20,7 @@ import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import { getDataFromTree } from 'react-apollo';
 import { userDir } from "uwf/tools/lib/dirs";
 import { AppContextTypes } from "./context";
-import createApolloClient from './createApolloClient.server';
+import createApolloClient from '@configure@/createApolloClient.server';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './components/error/ErrorPage';
@@ -33,6 +33,9 @@ import schema from './schema';
 // @ts-ignore
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import config from './config';
+import createCache from '@configure@/createCache';
+import { clientDefaults, clientResolvers, clientTypeDefs } from "./clientSchema";
+
 
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at:', p, 'reason:', reason);
@@ -139,16 +142,20 @@ app.get('*', async (req, res, next) => {
       styles.forEach(style => css.add(style._getCss()));
     };
 
-    const apolloClient = createApolloClient(
-      {
+    const apolloClient = createApolloClient({
+      schemaArgs: {
         schema: makeExecutableSchema(schema),
         // This is a context consumed in GraphQL Resolvers
         context: { req },
       },
-      {
+      partialCacheDefaults: {
         user: req.user || null,
       },
-    );
+      apolloCache: createCache(),
+      clientDefaults,
+      clientResolvers,
+      clientTypeDefs,
+    });
 
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
