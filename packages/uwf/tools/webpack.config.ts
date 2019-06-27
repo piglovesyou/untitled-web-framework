@@ -19,6 +19,7 @@ import { genDir, libDir, userDir } from "./lib/dirs";
 import overrideRules from './lib/overrideRules';
 import pkg from '../package.json';
 import postcssConfig from './postcss.config';
+import MultiAliasPlugin from '@piglovesyou/enhanced-resolve/lib/AliasPlugin';
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 // const resolvePath = (...args: string[]) => path.resolve(ROOT_DIR, ...args);
@@ -304,9 +305,13 @@ const config: WebpackOptions = {
       path.join(userDir, 'node_modules'),
       'node_modules',
     ],
-    // alias: {
-    //   '__userDir__': userDir,
-    // },
+    plugins: [new MultiAliasPlugin('described-resolve', {
+      name: '@configure@',
+      alias: [
+        path.join(userDir, 'configure'),
+        path.join(libDir, 'src/configure'),
+      ],
+    }, 'resolve')],
   },
 
   resolveLoader: {

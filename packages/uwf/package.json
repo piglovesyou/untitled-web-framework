@@ -90,6 +90,7 @@
     "@graphql-codegen/typescript": "1.2.0",
     "@graphql-codegen/typescript-operations": "^1.2.0",
     "@graphql-codegen/typescript-react-apollo": "^1.2.0",
+    "@piglovesyou/enhanced-resolve": "^4.3.0",
     "typesync": "^0.5.1"
   },
   "peerDependencies": {
