@@ -34,7 +34,7 @@ function buildRouteChildScript(
 function buildRoutesScript(pathInfoArray: PathInfo[]): string {
   return `/* Auto-generated. Do not edit. */
 
-import { RouteInfo } from 'uwf/types';
+import { RouteInfo } from '../types';
 
 const routes = [
 ${ pathInfoArray.map(buildRouteChildScript).join('') }
