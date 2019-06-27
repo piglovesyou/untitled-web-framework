@@ -20,6 +20,7 @@ declare module 'child_process' {
 
 // Declare modules for non-typed packages
 declare module '@piglovesyou/isomorphic-style-loader/StyleContext';
+declare module '@piglovesyou/enhanced-resolve/lib/AliasPlugin';
 declare module 'react-deep-force-update';
 declare module 'apollo-link-logger';
 declare module 'webpack-hot-middleware/client';
