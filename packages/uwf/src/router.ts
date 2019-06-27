@@ -28,9 +28,21 @@ async function action(context: any) {
   return route;
 }
 
+const notFoundRoute = {
+  path: '(.*)',
+  load: async () => {
+    const loaded = {
+      module: await import(/* webpackChunkName: 'not-found' */ './components/not-found/NotFound'),
+      chunkName: 'not-found',
+      ext: '.tsx',
+    };
+    return loaded;
+  }
+};
+
 const routes: Route = {
   path: '',
-  children,
+  children: [...children, notFoundRoute],
   action,
 };
 
