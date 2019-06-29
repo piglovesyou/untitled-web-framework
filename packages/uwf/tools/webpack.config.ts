@@ -21,8 +21,6 @@ import pkg from '../package.json';
 import postcssConfig from './postcss.config';
 import MultiAliasPlugin from '@piglovesyou/enhanced-resolve/lib/AliasPlugin';
 
-const ROOT_DIR = path.resolve(__dirname, '..');
-// const resolvePath = (...args: string[]) => path.resolve(ROOT_DIR, ...args);
 const SRC_DIR = path.join(libDir, 'src');
 export const BUILD_DIR = path.join(userDir, 'build');
 
@@ -30,6 +28,7 @@ const isDebug = !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose');
 const isAnalyze =
   process.argv.includes('--analyze') || process.argv.includes('--analyse');
+const isBuilding = process.argv.includes('build');
 
 const reScript = /\.(ts|tsx|js|jsx|mjs)$/;
 const reGraphql = /\.(graphql|gql)$/;
@@ -533,6 +532,7 @@ const serverConfig: WebpackOptions = {
     new webpack.DefinePlugin({
       'process.env.BROWSER': false,
       __DEV__: isDebug,
+      __userDir__: isBuilding ? '__dirname' : `"${userDir}"`,
     }),
 
     // Adds a banner to the top of each generated chunk
