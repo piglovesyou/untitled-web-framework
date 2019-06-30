@@ -9,6 +9,7 @@
 
 import path from 'path';
 import chokidar from 'chokidar';
+import { buildDir, userDir } from "uwf/src/tools/lib/dirs";
 import { writeFile, copyFile, makeDir, copyDir, cleanDir } from './lib/fs';
 import pkg from '../../package.json';
 import { format } from './run';
@@ -21,7 +22,7 @@ async function copy() {
   await makeDir('build');
   await Promise.all([
     writeFile(
-      'build/package.json',
+      path.join(buildDir, 'package.json') ,
       JSON.stringify(
         {
           private: true,
@@ -36,8 +37,10 @@ async function copy() {
       ),
     ),
     // copyFile('LICENSE.txt', 'build/LICENSE.txt'),
-    copyFile('yarn.lock', 'build/yarn.lock'),
-    copyDir('public', 'build/public'),
+    // copyFile('yarn.lock', 'build/yarn.lock'),
+    copyDir(
+      path.join(userDir, 'public'),
+      path.join(buildDir, 'public')),
   ]);
 
   if (process.argv.includes('--watch')) {
