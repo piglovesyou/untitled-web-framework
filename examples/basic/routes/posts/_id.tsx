@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
-import AppContext from "uwf/AppContext";
+import React from "react";
 import Layout from "../../components/Layout/Layout";
 
 export const title = "Posts";
 
 const Home = () => {
-  const context = useContext(AppContext);
-  console.log(context);
+  // const context = useContext(AppContext);
+  // console.log(context);
   return (
     <Layout>
       <div>Detail</div>

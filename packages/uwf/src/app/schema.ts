@@ -25,11 +25,12 @@ const [hasMutation, hasSubscription] = [
   ...serverSchemaDeps,
   ...clientSchemaDeps,
 ].reduce(
-  ([hasMutation, hasSubscription], [module]) => {
-    if (!module.schema) return [hasMutation, hasSubscription];
+  ([maybeHasMutation, maybeHasSubscription], [module]) => {
+    if (!module.schema) return [maybeHasMutation, maybeHasSubscription];
     return [
-      hasMutation || hasObjectTypeExtension(gql(module.schema), 'Mutation'),
-      hasSubscription ||
+      maybeHasMutation ||
+        hasObjectTypeExtension(gql(module.schema), 'Mutation'),
+      maybeHasSubscription ||
         hasObjectTypeExtension(gql(module.schema), 'Subscription'),
     ];
   },

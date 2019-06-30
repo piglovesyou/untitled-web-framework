@@ -7,6 +7,8 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+/* eslint-disable global-require */
+
 import path from 'path';
 import express, { Request, Response, Application } from 'express';
 import browserSync from 'browser-sync';
@@ -154,7 +156,6 @@ async function start() {
   let hot: any;
   function reloadApp() {
     delete require.cache[require.resolve(serverScriptPath)];
-    // eslint-disable-next-line global-require
     const compiled = require(serverScriptPath);
     app = compiled.default;
     hot = compiled.hot;
@@ -234,7 +235,7 @@ async function start() {
   console.info(`[${format(timeStart)}] Launching server...`);
 
   // Load compiled src/server.js as a middleware
-  // eslint-disable-next-line global-require, import/no-unresolved
+  // eslint-disable-next-line import/no-unresolved
   reloadApp();
   appPromiseIsResolved = true;
   appPromiseResolve!();

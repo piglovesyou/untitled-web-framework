@@ -1,6 +1,6 @@
 import glob from 'glob';
 import path from 'path';
-import { genDir, userDir } from './dirs';
+import { userDir } from './dirs';
 
 export default function getFileNames(pattern: string): Promise<string[]> {
   return new Promise((resolve, reject) => {

@@ -5,6 +5,7 @@ export default function verifyCWD() {
   const pkgPath = path.resolve(process.env.INIT_CWD, 'package.json');
   let pkg;
   try {
+    // eslint-disable-next-line global-require
     pkg = require(pkgPath);
     if (pkg.devDependencies || pkg.devDependencies.uwd) {
       return;

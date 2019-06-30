@@ -1,8 +1,6 @@
-// import { promises } from 'uwf/src/tools/lib/fs';
-// const { writeFile } = promises;
 import path from 'path';
-import { writeFile } from './fs';
 import { genDir, userDir } from './dirs';
+import { writeFile } from './fs';
 import getFileNames from './getFileNames';
 
 type PathInfo = {
@@ -12,13 +10,12 @@ type PathInfo = {
   ext: string;
 };
 
-function buildRouteChildScript({
+const buildRouteChildScript = ({
   routePath,
   modulePath,
   chunkName,
   ext,
-}: PathInfo): string {
-  return `
+}: PathInfo): string => `
   {
     path: '${routePath}',
     load: async (): Promise<RouteInfo> => ({
@@ -28,10 +25,10 @@ function buildRouteChildScript({
     }),
   },
 `;
-}
 
-function buildRoutesScript(pathInfoArray: PathInfo[]): string {
-  return `/* Auto-generated. Do not edit. */
+const buildRoutesScript = (
+  pathInfoArray: PathInfo[],
+): string => `/* Auto-generated. Do not edit. */
 
 import { RouteInfo } from '../types';
 
@@ -41,9 +38,15 @@ ${pathInfoArray.map(buildRouteChildScript).join('')}
   
 export default routes;
 `;
-}
+const omitIndex = (p: string): string => {
+  if (p.endsWith('/index')) {
+    const shortened = p.slice(0, p.length - '/index'.length);
+    return omitIndex(shortened);
+  }
+  return p;
+};
 
-function createpathInfo(f: string): PathInfo {
+const createpathInfo = (f: string): PathInfo => {
   // TODO refactor
   const dir = path.dirname(f);
   const ext = path.extname(f);
@@ -67,15 +70,7 @@ function createpathInfo(f: string): PathInfo {
   );
 
   return { routePath, modulePath, chunkName, ext };
-}
-
-function omitIndex(p: string): string {
-  if (p.endsWith('/index')) {
-    const shortened = p.slice(0, p.length - '/index'.length);
-    return omitIndex(shortened);
-  }
-  return p;
-}
+};
 
 export default async function generateRoutesDeps() {
   const files = await getFileNames('routes/**/*.tsx');

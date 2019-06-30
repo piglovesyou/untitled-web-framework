@@ -23,11 +23,12 @@ module.exports = {
 
   parserOptions: {
     sourceType: 'module',
-    project: './tsconfig.json',
+    // project: './tsconfig.json',
   },
 
   globals: {
     __DEV__: true,
+    __userDir__: true,
   },
 
   env: {

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+
 import React from "react";
 import withStyles from "uwf/withStyles";
 import { withHomeNews } from "uwf/dataBinders";
@@ -30,7 +32,6 @@ const Home = withHomeNews<{}>()(props => {
                   </h1>
                   <div
                     className={s.newsDesc}
-                    // eslint-disable-next-line react/no-danger
                     dangerouslySetInnerHTML={{ __html: item.content }}
                   />
                 </article>
