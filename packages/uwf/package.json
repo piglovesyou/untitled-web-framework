@@ -5,7 +5,7 @@
     "node": ">=10.15.3"
   },
   "bin": {
-    "uwf": "bin/cli-entrypoint.js"
+    "uwf": "bin/uwf"
   },
   "browserslist": [
     ">1%",
