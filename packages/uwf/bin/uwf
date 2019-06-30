@@ -1,16 +1,24 @@
 #!/usr/bin/env node
 
-require('@babel/register')({
-  cwd: __dirname,
-  extensions: ['.ts'],
-  ...require('../babel.config'),
-});
+const {resolve} = require('path');
+let srcDir = resolve(__dirname, '../dist');
+const isDevelop = process.argv.includes('--develop');
 
-const verifyCWD = require('../src/tools/lib/verifyCWD').default;
+if (false) {
+  require('@babel/register')({
+    cwd: __dirname,
+    extensions: ['.ts'],
+    ...require('../babel.config'),
+  });
+
+  srcDir = resolve(__dirname, '../src');
+}
+
+const verifyCWD = require(resolve(srcDir, 'tools/lib/verifyCWD')).default;
 verifyCWD();
 
-const run = require('../src/tools/run').default;
-const task = require(`../src/tools/${process.argv[2]}`).default;
+const run = require(resolve(srcDir, 'tools/run')).default;
+const task = require(resolve(srcDir, 'tools', process.argv[2])).default;
 
 run(task).catch(err => {
   console.error(err.stack);

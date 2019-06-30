@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server';
 import getPort from 'get-port';
 import path from 'path';
 // import rimraf from 'rimraf';
-import { genDir, libDir, userDir, buildDir } from "./lib/dirs";
+import { genDir, libDir, userDir, buildDir, srcDir } from "./lib/dirs";
 import prepareDeps from "./lib/prepareDeps";
 import runWebpack from './lib/runWebpack';
 import webpackConfig from './webpack.config';
@@ -24,7 +24,7 @@ export default async function codegen() {
   const promiseCompileSchemaJs = await runWebpack(
     {
       ...serverConfig,
-      entry: path.join(libDir, 'src/app/schema'),
+      entry: path.join(srcDir, 'app/schema'),
       output: {
         path: serverConfig!.output!.path,
         filename: 'schema.js',

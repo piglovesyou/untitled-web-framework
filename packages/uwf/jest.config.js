@@ -1,3 +1,4 @@
+"use strict";
 /**
  * React Starter Kit (https://www.reactstarterkit.com/)
  *
@@ -6,65 +7,52 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-
 // Jest configuration
 // https://facebook.github.io/jest/docs/en/configuration.html
+
 module.exports = {
   // Modules can be explicitly auto-mocked using jest.mock(moduleName).
   // https://facebook.github.io/jest/docs/en/configuration.html#automock-boolean
-  automock: false, // [boolean]
-
+  automock: false,
+  // [boolean]
   // Respect Browserify's "browser" field in package.json when resolving modules.
   // https://facebook.github.io/jest/docs/en/configuration.html#browser-boolean
-  browser: false, // [boolean]
-
+  browser: false,
+  // [boolean]
   // This config option can be used here to have Jest stop running tests after the first failure.
   // https://facebook.github.io/jest/docs/en/configuration.html#bail-boolean
-  bail: false, // [boolean]
-
+  bail: false,
+  // [boolean]
   // The directory where Jest should store its cached dependency information.
   // https://facebook.github.io/jest/docs/en/configuration.html#cachedirectory-string
   // cacheDirectory: '/tmp/<path>', // [string]
-
   // Indicates whether the coverage information should be collected while executing the test.
   // Because this retrofits all executed files with coverage collection statements,
   // it may significantly slow down your tests.
   // https://facebook.github.io/jest/docs/en/configuration.html#collectcoverage-boolean
   // collectCoverage: false, // [boolean]
-
   // https://facebook.github.io/jest/docs/en/configuration.html#collectcoveragefrom-array
-  collectCoverageFrom: [
-    'src/**/*.{ts,tsx,js,jsx}',
-    '!**/node_modules/**',
-    '!**/vendor/**',
-  ],
-
+  collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}', '!**/node_modules/**', '!**/vendor/**'],
   // https://facebook.github.io/jest/docs/en/configuration.html#coveragedirectory-string
-  coverageDirectory: '<rootDir>/coverage', // [string]
-
+  coverageDirectory: '<rootDir>/coverage',
+  // [string]
   // coveragePathIgnorePatterns: // [array<string>]
   // coverageReporters: [], // [array<string>]
   // coverageThreshold: {}, // [object]
-
   globals: {
-    __DEV__: true,
+    __DEV__: true
   },
-
   // https://facebook.github.io/jest/docs/en/configuration.html#mapcoverage-boolean
   // mapCoverage: false, // [boolean]
-
   // The default extensions Jest will look for.
   // https://facebook.github.io/jest/docs/en/configuration.html#modulefileextensions-array-string
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-
   // moduleDirectories: // [array<string>]
-
   // A map from regular expressions to module names that allow to stub out resources,
   // like images or styles with a single module.
   moduleNameMapper: {
-    '\\.(css|less|styl|scss|sass|sss)$': 'identity-obj-proxy',
+    '\\.(css|less|styl|scss|sass|sss)$': 'identity-obj-proxy'
   },
-
   // modulePathIgnorePatterns: // [array<string>]
   // modulePaths: // [array<string>]
   // notify: false, // [boolean]
@@ -88,16 +76,13 @@ module.exports = {
   // testRunner: // [string]
   // testURL: // [string]
   // timers: // [string]
-
   transform: {
     '\\.(ts|tsx|js|jsx)$': 'babel-jest',
     '\\.(gql|graphql)$': 'jest-transform-graphql',
-    '^(?!.*\\.(js|jsx|json|css|less|styl|scss|sass|sss)$)':
-      '<rootDir>/tools/lib/fileTransformer.js',
+    '^(?!.*\\.(js|jsx|json|css|less|styl|scss|sass|sss)$)': '<rootDir>/tools/lib/fileTransformer.js'
   },
-
   // transformIgnorePatterns: // [array<string>]
   // unmockedModulePathPatterns: // [array<string>]
+  verbose: true // [boolean]
 
-  verbose: true, // [boolean]
 };

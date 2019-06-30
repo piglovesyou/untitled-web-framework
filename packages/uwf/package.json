@@ -82,11 +82,10 @@
     "test": "jest",
     "test-watch": "yarn run test --watch --notify",
     "test-cover": "yarn run test --coverage",
-    "codegen": "babel-node --extensions '.ts' src/tools/run codegen",
     "coverage": "yarn run test-cover && opn coverage/lcov-report/index.html",
     "build-stats": "yarn run build --release --analyse",
-    "build": "babel -d src/tools -x '.ts' tools",
-    "watch": "babel --watch --source-maps inline -d src/tools -x '.ts' tools"
+    "watch": "babel --watch --source-maps inline -d src/tools -x '.ts' tools",
+    "prepack": "rimraf dist && copyfiles -u 1 src/**/*.css dist && babel --extensions '.ts,.tsx,.js' -d dist src && babel --extensions '.ts' -d ./ '*.ts'"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.3.0",
@@ -94,6 +93,7 @@
     "@graphql-codegen/typescript-operations": "^1.2.0",
     "@graphql-codegen/typescript-react-apollo": "^1.2.0",
     "@piglovesyou/enhanced-resolve": "^4.3.0",
+    "copyfiles": "^2.1.0",
     "typesync": "^0.5.1"
   },
   "peerDependencies": {
