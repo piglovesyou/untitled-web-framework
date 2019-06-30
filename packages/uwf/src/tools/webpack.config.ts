@@ -302,6 +302,7 @@ const config: WebpackOptions = {
       'node_modules',
     ],
     plugins: [new MultiAliasPlugin('described-resolve', [
+      { name: 'uwf', alias: path.join(srcDir, 'app') },
       { name: '@configure@', alias: path.join(userDir, 'configure') },
       { name: '@configure@', alias: path.join(srcDir, 'configure') },
     ], 'resolve')],

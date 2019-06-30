@@ -19,7 +19,7 @@ import history from './history';
 import { updateMeta } from './DOMUtils';
 import createApolloClient from '@configure@/createApolloClient.client';
 import router from './router';
-import { AppContextTypes } from './context';
+import { AppContextTypes } from './AppContext';
 import { clientResolvers, clientTypeDefs } from "./clientSchema";
 import createCache from '@configure@/createCache';
 
