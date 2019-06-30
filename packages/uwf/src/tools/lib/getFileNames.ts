@@ -11,4 +11,3 @@ export default function getFileNames(pattern: string): Promise<string[]> {
     });
   });
 }
-

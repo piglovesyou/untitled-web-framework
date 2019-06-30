@@ -7,9 +7,9 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import withStyles from 'uwf/withStyles';
-import s from './Page.css';
+import React from "react";
+import withStyles from "uwf/withStyles";
+import s from "./Page.css";
 
 interface PropTypes {
   title: string;

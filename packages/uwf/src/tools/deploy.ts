@@ -7,13 +7,13 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import { SpawnOptions } from "child_process";
+import { SpawnOptions } from 'child_process';
 import path from 'path';
 import fetch from 'node-fetch';
 import { spawn } from './lib/cp';
 import { makeDir, moveDir, cleanDir } from './lib/fs';
 import run from './run';
-import {buildDir} from "./lib/dirs";
+import { buildDir } from './lib/dirs';
 
 // GitHub Pages
 const remote = {

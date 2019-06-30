@@ -2,9 +2,8 @@ import { generate } from '@graphql-codegen/cli';
 import { ApolloServer } from 'apollo-server';
 import getPort from 'get-port';
 import path from 'path';
-// import rimraf from 'rimraf';
-import { genDir, libDir, userDir, buildDir, srcDir } from "./lib/dirs";
-import prepareDeps from "./lib/prepareDeps";
+import { buildDir, genDir, srcDir, userDir } from './lib/dirs';
+import prepareDeps from './lib/prepareDeps';
 import runWebpack from './lib/runWebpack';
 import webpackConfig from './webpack.config';
 
@@ -62,11 +61,11 @@ export default async function codegen() {
           config: {
             // withHOC: false,
             withHooks: true,
-          }
+          },
         },
       },
     },
-    true
+    true,
   );
 
   await new Promise(resolve => httpServer.close(resolve));

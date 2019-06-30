@@ -1,8 +1,8 @@
 export const defaults = {
   networkStatus: {
-    __typename: 'NetworkStatus',
-    isConnected: true,
-  },
+    __typename: "NetworkStatus",
+    isConnected: true
+  }
 };
 
 export const resolvers = {
@@ -10,14 +10,14 @@ export const resolvers = {
     updateNetworkStatus: (_: any, { isConnected }: any, { cache }: any) => {
       const data = {
         networkStatus: {
-          __typename: 'NetworkStatus',
-          isConnected,
-        },
+          __typename: "NetworkStatus",
+          isConnected
+        }
       };
       cache.writeData({ data });
       return null;
-    },
-  },
+    }
+  }
 };
 
 export const schema = `

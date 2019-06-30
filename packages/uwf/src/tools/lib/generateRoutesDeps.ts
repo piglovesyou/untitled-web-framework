@@ -1,32 +1,30 @@
 // import { promises } from 'uwf/src/tools/lib/fs';
 // const { writeFile } = promises;
-import { writeFile} from "./fs";
 import path from 'path';
+import { writeFile } from './fs';
 import { genDir, userDir } from './dirs';
-import getFileNames from "./getFileNames";
+import getFileNames from './getFileNames';
 
 type PathInfo = {
-  routePath: string,
-  modulePath: string,
-  chunkName: string,
-  ext: string,
+  routePath: string;
+  modulePath: string;
+  chunkName: string;
+  ext: string;
 };
 
-function buildRouteChildScript(
-  {
-    routePath,
-    modulePath,
-    chunkName,
-    ext,
-  }: PathInfo
-): string {
+function buildRouteChildScript({
+  routePath,
+  modulePath,
+  chunkName,
+  ext,
+}: PathInfo): string {
   return `
   {
-    path: '${ routePath }',
+    path: '${routePath}',
     load: async (): Promise<RouteInfo> => ({
-      module: await import(/* webpackChunkName: '${ chunkName }' */ '${ modulePath }'),
-      chunkName: '${ chunkName }',
-      ext: '${ ext }',
+      module: await import(/* webpackChunkName: '${chunkName}' */ '${modulePath}'),
+      chunkName: '${chunkName}',
+      ext: '${ext}',
     }),
   },
 `;
@@ -38,7 +36,7 @@ function buildRoutesScript(pathInfoArray: PathInfo[]): string {
 import { RouteInfo } from '../types';
 
 const routes = [
-${ pathInfoArray.map(buildRouteChildScript).join('') }
+${pathInfoArray.map(buildRouteChildScript).join('')}
 ];
   
 export default routes;
@@ -52,11 +50,13 @@ function createpathInfo(f: string): PathInfo {
   const file = path.basename(f);
   const base = path.basename(f, ext);
 
-  let routePath = path.relative(
-    userDir,
-    // TODO: Replace intermediate paths like "/_thisone/x" too?
-    path.join(dir, base.replace(/^_/, ':')),
-  ).slice('routes'.length);
+  let routePath = path
+    .relative(
+      userDir,
+      // TODO: Replace intermediate paths like "/_thisone/x" too?
+      path.join(dir, base.replace(/^_/, ':')),
+    )
+    .slice('routes'.length);
   routePath = omitIndex(routePath) || '/';
 
   const chunkName = routePath.split('/')[1] || 'home';
@@ -67,7 +67,7 @@ function createpathInfo(f: string): PathInfo {
   );
 
   return { routePath, modulePath, chunkName, ext };
-};
+}
 
 function omitIndex(p: string): string {
   if (p.endsWith('/index')) {

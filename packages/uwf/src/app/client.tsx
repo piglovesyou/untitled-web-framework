@@ -15,13 +15,13 @@ import queryString from 'query-string';
 import gql from 'graphql-tag';
 import { createPath, Location } from 'history';
 import App from '@configure@/App';
+import createApolloClient from '@configure@/createApolloClient.client';
+import createCache from '@configure@/createCache';
 import history from './history';
 import { updateMeta } from './DOMUtils';
-import createApolloClient from '@configure@/createApolloClient.client';
 import router from './router';
 import { AppContextTypes } from './AppContext';
-import { clientResolvers, clientTypeDefs } from "./clientSchema";
-import createCache from '@configure@/createCache';
+import { clientResolvers, clientTypeDefs } from './clientSchema';
 
 const apolloClient = createApolloClient({
   clientTypeDefs,

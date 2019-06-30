@@ -78,6 +78,7 @@
     "eslint-config-prettier": "^4.1.0",
     "eslint-import-resolver-node": "^0.3.2",
     "eslint-loader": "^2.1.2",
+    "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-css-modules": "^2.11.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
@@ -136,8 +137,13 @@
     "webpack-node-externals": "^1.7.2"
   },
   "scripts": {
-    "fix": "lerna run fix",
-    "postinstall": "lerna bootstrap"
+    "precommit": "#lint-staged",
+    "lint-js": "eslint --ext .ts --ext .tsx --ignore-path .gitignore --ignore-pattern \\\\\\\"!**/.*\\\\\\\" .",
+    "lint-css": "stylelint \\\"src/**/*.{css,less,styl,scss,sass,sss}\\\"",
+    "lint": "yarn codegen && yarn tsc && yarn run lint-js && yarn run lint-css",
+    "fix-js": "yarn run lint-js --fix",
+    "fix-css": "yarn run lint-css --fix",
+    "fix": "yarn run fix-js && yarn run fix-css"
   },
   "dependencies": {
     "uwf": "file:packages/uwf"

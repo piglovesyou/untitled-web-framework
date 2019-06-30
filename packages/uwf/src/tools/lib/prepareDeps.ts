@@ -1,5 +1,5 @@
-import generateRoutesDeps from "./generateRoutesDeps";
-import generateDeps from "./generateDeps";
+import generateRoutesDeps from './generateRoutesDeps';
+import generateDeps from './generateDeps';
 
 export default async function prepareDeps() {
   await generateDeps('data/**/*.ts', 'serverSchemaDeps', 'SchemaInfo');

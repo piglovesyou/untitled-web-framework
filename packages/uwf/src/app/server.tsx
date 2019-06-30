@@ -18,23 +18,26 @@ import ReactDOM from 'react-dom/server';
 import PrettyError from 'pretty-error';
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express';
 import { getDataFromTree } from 'react-apollo';
-import { AppContextTypes } from "./AppContext";
 import createApolloClient from '@configure@/createApolloClient.server';
 import App from '@configure@/App';
 import Html from '@configure@/Html';
 import { ErrorPageWithoutStyle } from '@configure@/error-page/ErrorPage';
 import errorPageStyle from '@configure@/error-page/ErrorPage.css';
 import passport from '@configure@/passport';
+import config from '@configure@/config';
+import createCache from '@configure@/createCache';
 import router from './router';
 // import models from './data/models';
 import schema from './schema';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 // @ts-ignore
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
-import config from '@configure@/config';
-import createCache from '@configure@/createCache';
-import { clientDefaults, clientResolvers, clientTypeDefs } from "./clientSchema";
-
+import { AppContextTypes } from './AppContext';
+import {
+  clientDefaults,
+  clientResolvers,
+  clientTypeDefs,
+} from './clientSchema';
 
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at:', p, 'reason:', reason);

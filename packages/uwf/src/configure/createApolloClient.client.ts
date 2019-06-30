@@ -7,9 +7,9 @@ import { DocumentNode } from 'graphql';
 import { ApolloCache } from 'apollo-cache';
 
 type CliantApolloClientArgs = {
-  clientTypeDefs: DocumentNode,
-  clientResolvers: Resolvers,
-  apolloCache: ApolloCache<any>,
+  clientTypeDefs: DocumentNode;
+  clientResolvers: Resolvers;
+  apolloCache: ApolloCache<any>;
 };
 
 export default function createApolloClient({
@@ -25,10 +25,10 @@ export default function createApolloClient({
       if (graphQLErrors)
         graphQLErrors.map(({ message, locations, path }) =>
           console.warn(
-            `[GraphQL error]: Message: ${ message }, Location: ${ locations }, Path: ${ path }`,
+            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
           ),
         );
-      if (networkError) console.warn(`[Network error]: ${ networkError }`);
+      if (networkError) console.warn(`[Network error]: ${networkError}`);
     }),
     ...(__DEV__ ? [apolloLogger] : []),
     new HttpLink({

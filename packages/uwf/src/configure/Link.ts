@@ -15,7 +15,9 @@ function isLeftClickEvent(event: MouseEvent) {
 }
 
 function isModifiedEvent(event: MouseEvent) {
-  return Boolean(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+  return Boolean(
+    event.metaKey || event.altKey || event.ctrlKey || event.shiftKey,
+  );
 }
 
 type PropTypes = {
@@ -27,23 +29,21 @@ type PropTypes = {
 };
 
 const Link = ({
-                tagName = 'a',
-                to,
-                children,
-                onClick = (event: any) => {
+  tagName = 'a',
+  to,
+  children,
+  onClick = (event: any) => {
+    if (isModifiedEvent(event)) return;
+    if (!isLeftClickEvent(event)) return;
+    if (event.defaultPrevented === true) return;
 
-                  if (isModifiedEvent(event)) return;
-                  if (!isLeftClickEvent(event)) return;
-                  if (event.defaultPrevented === true) return;
-
-                  event.preventDefault();
-                  history.push(to);
-                },
-                ...restProps
-              }: PropTypes) => {
-
+    event.preventDefault();
+    history.push(to);
+  },
+  ...restProps
+}: PropTypes) => {
   const props = {
-    ...(tagName === 'a' ? {href: to} : null),
+    ...(tagName === 'a' ? { href: to } : null),
     onClick,
     ...restProps,
   };

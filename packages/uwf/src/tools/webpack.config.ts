@@ -14,12 +14,12 @@ import WebpackAssetsManifest from 'webpack-assets-manifest';
 import nodeExternals from 'webpack-node-externals';
 import cssnano from 'cssnano';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import { WebpackOptions } from "webpack/declarations/WebpackOptions";
-import { genDir, libDir, userDir, srcDir, buildDir, } from "./lib/dirs";
+import { WebpackOptions } from 'webpack/declarations/WebpackOptions';
+import MultiAliasPlugin from '@piglovesyou/enhanced-resolve/lib/AliasPlugin';
+import { genDir, libDir, userDir, srcDir, buildDir } from './lib/dirs';
 import overrideRules from './lib/overrideRules';
 import pkg from '../../package.json';
 import postcssConfig from './postcss.config';
-import MultiAliasPlugin from '@piglovesyou/enhanced-resolve/lib/AliasPlugin';
 
 const isDebug = !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose');
@@ -67,12 +67,7 @@ const config: WebpackOptions = {
       // Rules for JS / JSX
       {
         test: reScript,
-        include: [
-          srcDir,
-          path.join(libDir, 'tools'),
-          genDir,
-          userDir,
-        ],
+        include: [srcDir, path.join(libDir, 'tools'), genDir, userDir],
         loader: 'babel-loader',
         options: {
           // @piglovesyou: Necessary to track node_modules
@@ -284,7 +279,8 @@ const config: WebpackOptions = {
         ? []
         : [
             {
-              test: path.join(libDir,
+              test: path.join(
+                libDir,
                 'node_modules/react-deep-force-update/lib/index.js',
               ),
               loader: 'null-loader',
@@ -301,11 +297,17 @@ const config: WebpackOptions = {
       path.join(userDir, 'node_modules'),
       'node_modules',
     ],
-    plugins: [new MultiAliasPlugin('described-resolve', [
-      { name: 'uwf', alias: path.join(srcDir, 'app') },
-      { name: '@configure@', alias: path.join(userDir, 'configure') },
-      { name: '@configure@', alias: path.join(srcDir, 'configure') },
-    ], 'resolve')],
+    plugins: [
+      new MultiAliasPlugin(
+        'described-resolve',
+        [
+          { name: 'uwf', alias: path.join(srcDir, 'app') },
+          { name: '@configure@', alias: path.join(userDir, 'configure') },
+          { name: '@configure@', alias: path.join(srcDir, 'configure') },
+        ],
+        'resolve',
+      ),
+    ],
   },
 
   resolveLoader: {
@@ -515,11 +517,7 @@ const serverConfig: WebpackOptions = {
     './chunk-manifest.json',
     './asset-manifest.json',
     nodeExternals({
-      whitelist: [
-        reStyle,
-        reImage,
-        /^uwf\/?/,
-      ],
+      whitelist: [reStyle, reImage, /^uwf\/?/],
       modulesDir: path.join(libDir, '../../node_modules'),
     }),
   ],

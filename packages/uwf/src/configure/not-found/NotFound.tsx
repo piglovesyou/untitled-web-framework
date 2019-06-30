@@ -18,7 +18,9 @@ const NotFound: FunctionComponent<PropTypes> = props => (
   <div>
     <h1>404 Page Not Found</h1>
     <p>Sorry, the page you were trying to view does not exist.</p>
-    <p><Link to={'/'}>Go to Top</Link></p>
+    <p>
+      <Link to="/">Go to Top</Link>
+    </p>
   </div>
 );
 

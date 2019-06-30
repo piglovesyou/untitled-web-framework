@@ -7,9 +7,9 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React from 'react';
-import withStyles from 'uwf/withStyles';
-import s from './Feedback.css';
+import React from "react";
+import withStyles from "uwf/withStyles";
+import s from "./Feedback.css";
 
 const Feedback = () => (
   <div className={s.root}>

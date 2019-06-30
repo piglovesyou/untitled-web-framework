@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// eslint-disable global-require
+
 const {resolve} = require('path');
 let srcDir = resolve(__dirname, '../dist');
 const isDevelop = process.argv.includes('--develop');

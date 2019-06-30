@@ -14,7 +14,7 @@ import webpack, { Compiler, Configuration } from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
-import { buildDir, srcDir } from "./lib/dirs";
+import { buildDir, srcDir } from './lib/dirs';
 import webpackConfig from './webpack.config';
 import run, { format } from './run';
 import clean from './clean';
@@ -83,7 +83,9 @@ async function start() {
   const clientConfig = webpackConfig.find(
     config => config.name === 'client',
   ) as any;
-  clientConfig.entry.client = [path.join(srcDir, 'tools/lib/webpackHotDevClient')]
+  clientConfig.entry.client = [
+    path.join(srcDir, 'tools/lib/webpackHotDevClient'),
+  ]
     .concat(clientConfig.entry.client)
     .sort(
       (a: string, b: string) =>

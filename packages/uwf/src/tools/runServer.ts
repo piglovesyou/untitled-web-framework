@@ -18,9 +18,9 @@ let server: ChildProcess;
 let pending = true;
 const [, serverConfig] = webpackConfig;
 const serverPath = path.join(
-// @ts-ignore
+  // @ts-ignore
   serverConfig.output.path,
-// @ts-ignore
+  // @ts-ignore
   serverConfig.output.filename.replace('[name]', 'server'),
 );
 

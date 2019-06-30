@@ -2,17 +2,17 @@ import { ApolloClient, Resolvers } from 'apollo-client';
 import { from } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { SchemaLink } from 'apollo-link-schema';
-import { DocumentNode } from "graphql";
+import { DocumentNode } from 'graphql';
 import merge from 'lodash.merge';
 import { ApolloCache } from 'apollo-cache';
 
 type ServerApolloClientArgs = {
-  schemaArgs: SchemaLink.Options,
-  partialCacheDefaults: Object,
-  apolloCache: ApolloCache<any>,
-  clientDefaults: Object,
-  clientResolvers: Resolvers,
-  clientTypeDefs: DocumentNode,
+  schemaArgs: SchemaLink.Options;
+  partialCacheDefaults: Object;
+  apolloCache: ApolloCache<any>;
+  clientDefaults: Object;
+  clientResolvers: Resolvers;
+  clientTypeDefs: DocumentNode;
 };
 
 export default function createApolloClient({
@@ -22,8 +22,7 @@ export default function createApolloClient({
   clientDefaults,
   clientResolvers,
   clientTypeDefs,
-} : ServerApolloClientArgs) {
-
+}: ServerApolloClientArgs) {
   apolloCache.writeData({
     data: merge({}, clientDefaults, partialCacheDefaults),
   });
@@ -33,10 +32,10 @@ export default function createApolloClient({
       if (graphQLErrors)
         graphQLErrors.map(({ message, locations, path }) =>
           console.warn(
-            `[GraphQL error]: Message: ${ message }, Location: ${ locations }, Path: ${ path }`,
+            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
           ),
         );
-      if (networkError) console.warn(`[Network error]: ${ networkError }`);
+      if (networkError) console.warn(`[Network error]: ${networkError}`);
     }),
     new SchemaLink({ ...schemaArgs }),
   ]);

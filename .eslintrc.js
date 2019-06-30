@@ -57,7 +57,7 @@ module.exports = {
     'no-underscore-dangle': [
       'error',
       {
-        allow: ['__typename', '__DEV__'],
+        allow: ['__typename', '__DEV__', '__userDir__'],
       },
     ],
 
