@@ -1,10 +1,9 @@
-import { promises } from 'fs';
+// import { promises } from 'fs';
 import path from 'path';
 import createMD5Hash from "./createMD5Hash";
 import { genDir, userDir } from "./dirs";
 import getFileNames from "./getFileNames";
-
-const { writeFile } = promises;
+import {writeFile} from './fs';
 
 type FileInfo = [string, string, string];
 

@@ -1,1 +1,1 @@
-export * from './src/__generated__/dataBinders';
+export * from './__generated__/dataBinders';

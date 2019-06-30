@@ -6,11 +6,11 @@ require('@babel/register')({
   ...require('../babel.config'),
 });
 
-const verifyCWD = require('./lib/verifyCWD').default;
+const verifyCWD = require('../src/tools/lib/verifyCWD').default;
 verifyCWD();
 
-const run = require('./run').default;
-const task = require(`./${process.argv[2]}`).default;
+const run = require('../src/tools/run').default;
+const task = require(`../src/tools/${process.argv[2]}`).default;
 
 run(task).catch(err => {
   console.error(err.stack);

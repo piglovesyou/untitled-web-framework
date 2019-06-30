@@ -4,7 +4,9 @@
   "engines": {
     "node": ">=10.15.3"
   },
-  "bin": "tools/cli-entrypoint.js",
+  "bin": {
+    "uwf": "bin/cli-entrypoint.js"
+  },
   "browserslist": [
     ">1%",
     "last 4 versions",
@@ -80,11 +82,11 @@
     "test": "jest",
     "test-watch": "yarn run test --watch --notify",
     "test-cover": "yarn run test --coverage",
-    "codegen": "babel-node --extensions '.ts' tools/run codegen",
+    "codegen": "babel-node --extensions '.ts' src/tools/run codegen",
     "coverage": "yarn run test-cover && opn coverage/lcov-report/index.html",
     "build-stats": "yarn run build --release --analyse",
-    "build": "babel -d tools -x '.ts' tools",
-    "watch": "babel --watch --source-maps inline -d tools -x '.ts' tools"
+    "build": "babel -d src/tools -x '.ts' tools",
+    "watch": "babel --watch --source-maps inline -d src/tools -x '.ts' tools"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.3.0",

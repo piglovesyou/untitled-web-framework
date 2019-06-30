@@ -9,7 +9,7 @@
 
 import React from 'react';
 import UniversalRouter from 'universal-router';
-import children from './__generated__/routesDeps';
+import children from '../../__generated__/routesDeps';
 import { Route } from 'universal-router';
 
 async function action(context: any) {
@@ -32,7 +32,7 @@ const notFoundRoute = {
   path: '(.*)',
   load: async () => {
     const loaded = {
-      module: await import(/* webpackChunkName: 'not-found' */ './configure/not-found/NotFound'),
+      module: await import(/* webpackChunkName: 'not-found' */ '@configure@/not-found/NotFound'),
       chunkName: 'not-found',
       ext: '.tsx',
     };

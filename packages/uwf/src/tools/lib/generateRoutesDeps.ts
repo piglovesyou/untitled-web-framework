@@ -1,5 +1,6 @@
-import { promises } from 'fs';
-const { writeFile } = promises;
+// import { promises } from 'uwf/src/tools/lib/fs';
+// const { writeFile } = promises;
+import { writeFile} from "./fs";
 import path from 'path';
 import { genDir, userDir } from './dirs';
 import getFileNames from "./getFileNames";

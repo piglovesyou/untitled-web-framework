@@ -15,14 +15,11 @@ import nodeExternals from 'webpack-node-externals';
 import cssnano from 'cssnano';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { WebpackOptions } from "webpack/declarations/WebpackOptions";
-import { genDir, libDir, userDir } from "./lib/dirs";
+import { genDir, libDir, userDir, srcDir, buildDir, } from "./lib/dirs";
 import overrideRules from './lib/overrideRules';
-import pkg from '../package.json';
+import pkg from '../../package.json';
 import postcssConfig from './postcss.config';
 import MultiAliasPlugin from '@piglovesyou/enhanced-resolve/lib/AliasPlugin';
-
-const SRC_DIR = path.join(libDir, 'src');
-export const BUILD_DIR = path.join(userDir, 'build');
 
 const isDebug = !process.argv.includes('--release');
 const isVerbose = process.argv.includes('--verbose');
@@ -50,7 +47,7 @@ const config: WebpackOptions = {
   mode: isDebug ? 'development' : 'production',
 
   output: {
-    path: path.join(BUILD_DIR, 'public/assets'),
+    path: path.join(buildDir, 'public/assets'),
     publicPath: '/assets/',
     pathinfo: isVerbose,
     filename: isDebug ? '[name].js' : '[name].[chunkhash:8].js',
@@ -71,7 +68,7 @@ const config: WebpackOptions = {
       {
         test: reScript,
         include: [
-          SRC_DIR,
+          srcDir,
           path.join(libDir, 'tools'),
           genDir,
           userDir,
@@ -144,7 +141,7 @@ const config: WebpackOptions = {
           // Process external/third-party styles
           {
             exclude: [
-              SRC_DIR,
+              srcDir,
               path.join(userDir, 'routes'),
               path.join(userDir, 'components'),
             ],
@@ -155,7 +152,7 @@ const config: WebpackOptions = {
           },
           {
             exclude: [
-              SRC_DIR,
+              srcDir,
               path.join(userDir, 'routes'),
               path.join(userDir, 'components'),
             ],
@@ -172,7 +169,7 @@ const config: WebpackOptions = {
           // Process internal/project styles (from src folder)
           {
             include: [
-              SRC_DIR,
+              srcDir,
               path.join(userDir, 'routes'),
               path.join(userDir, 'components'),
             ],
@@ -261,7 +258,7 @@ const config: WebpackOptions = {
       // Convert Markdown into HTML
       {
         test: /\.md$/,
-        loader: path.resolve(libDir, 'tools/lib/markdown-loader'),
+        loader: path.resolve(srcDir, 'tools/lib/markdown-loader'),
       },
 
       // Return public URL for all assets unless explicitly excluded
@@ -306,7 +303,7 @@ const config: WebpackOptions = {
     ],
     plugins: [new MultiAliasPlugin('described-resolve', [
       { name: '@configure@', alias: path.join(userDir, 'configure') },
-      { name: '@configure@', alias: path.join(libDir, 'src/configure') },
+      { name: '@configure@', alias: path.join(srcDir, 'configure') },
     ], 'resolve')],
   },
 
@@ -351,7 +348,7 @@ const clientConfig: WebpackOptions = {
   target: 'web',
 
   entry: {
-    client: ['@babel/polyfill', path.join(libDir, 'src/client')],
+    client: ['@babel/polyfill', path.join(srcDir, 'app/client')],
   },
 
   plugins: [
@@ -365,7 +362,7 @@ const clientConfig: WebpackOptions = {
     // Emit a file with assets paths
     // https://github.com/webdeveric/webpack-assets-manifest#options
     new WebpackAssetsManifest({
-      output: `${BUILD_DIR}/asset-manifest.json`,
+      output: `${buildDir}/asset-manifest.json`,
       publicPath: true,
       writeToDisk: true,
       customize: ({ key, value }: { key: string; value: string }) => {
@@ -375,7 +372,7 @@ const clientConfig: WebpackOptions = {
       },
       done: (manifest: any, stats: any) => {
         // Write chunk-manifest.json.json
-        const chunkFileName = `${BUILD_DIR}/chunk-manifest.json`;
+        const chunkFileName = `${buildDir}/chunk-manifest.json`;
         try {
           const fileFilter = (file: string) => !file.endsWith('.map');
           const addPath = (file: string) => manifest.getPublicPath(file);
@@ -447,12 +444,12 @@ const serverConfig: WebpackOptions = {
   target: 'node',
 
   entry: {
-    server: [path.join(libDir, 'src/server')],
+    server: [path.join(srcDir, 'app/server')],
   },
 
   output: {
     ...config.output,
-    path: BUILD_DIR,
+    path: buildDir,
     filename: '[name].js',
     chunkFilename: 'chunks/[name].js',
     libraryTarget: 'commonjs2',

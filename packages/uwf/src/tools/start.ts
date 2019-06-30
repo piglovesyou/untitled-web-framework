@@ -14,8 +14,8 @@ import webpack, { Compiler, Configuration } from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import errorOverlayMiddleware from 'react-dev-utils/errorOverlayMiddleware';
-import { libDir } from "./lib/dirs";
-import webpackConfig, { BUILD_DIR } from './webpack.config';
+import { buildDir, srcDir } from "./lib/dirs";
+import webpackConfig from './webpack.config';
 import run, { format } from './run';
 import clean from './clean';
 
@@ -83,7 +83,7 @@ async function start() {
   const clientConfig = webpackConfig.find(
     config => config.name === 'client',
   ) as any;
-  clientConfig.entry.client = [path.join(libDir, './tools/lib/webpackHotDevClient')]
+  clientConfig.entry.client = [path.join(srcDir, 'tools/lib/webpackHotDevClient')]
     .concat(clientConfig.entry.client)
     .sort(
       (a: string, b: string) =>
@@ -146,7 +146,7 @@ async function start() {
   // https://github.com/glenjamin/webpack-hot-middleware
   server.use(webpackHotMiddleware(clientCompiler, { log: false }));
 
-  const serverScriptPath = path.join(BUILD_DIR, 'server');
+  const serverScriptPath = path.join(buildDir, 'server');
 
   let app: Application;
   let hot: any;

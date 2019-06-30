@@ -13,7 +13,7 @@ import fetch from 'node-fetch';
 import { spawn } from './lib/cp';
 import { makeDir, moveDir, cleanDir } from './lib/fs';
 import run from './run';
-import { BUILD_DIR } from "./webpack.config";
+import {buildDir} from "./lib/dirs";
 
 // GitHub Pages
 const remote = {
@@ -41,7 +41,7 @@ const remote = {
 // };
 
 const options: SpawnOptions = {
-  cwd: path.resolve(BUILD_DIR),
+  cwd: path.resolve(buildDir),
   stdio: ['ignore', 'inherit', 'inherit'],
 };
 
