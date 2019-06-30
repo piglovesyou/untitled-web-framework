@@ -4,7 +4,7 @@ const {resolve} = require('path');
 let srcDir = resolve(__dirname, '../dist');
 const isDevelop = process.argv.includes('--develop');
 
-if (false) {
+if (isDevelop) {
   require('@babel/register')({
     cwd: __dirname,
     extensions: ['.ts'],
