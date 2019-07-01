@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - 'stable'
+  - '10'
+  - '8'
+cache: yarn
+script:
+  - yarn codegen
+  - yarn lint
+  - yarn test

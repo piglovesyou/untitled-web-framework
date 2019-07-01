@@ -9,7 +9,7 @@
 
 import path from 'path';
 import chokidar from 'chokidar';
-import { buildDir, userDir } from 'uwf/src/tools/lib/dirs';
+import { buildDir, userDir } from './lib/dirs';
 import { writeFile, copyFile, makeDir, copyDir, cleanDir } from './lib/fs';
 import pkg from '../../package.json';
 import { format } from './run';
