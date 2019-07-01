@@ -147,9 +147,6 @@
     "codegen": "yarn lerna run prepack && yarn lerna run codegen",
     "test": "yarn tsc --noEmit && yarn lerna run build"
   },
-  "dependencies": {
-    "uwf": "file:packages/uwf"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "#lint-staged"
