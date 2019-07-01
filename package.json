@@ -1,5 +1,5 @@
 {
-  "name": "uwf",
+  "name": "uwf-monorepo",
   "version": "0.0.1",
   "main": "index.js",
   "repository": "https://github.com/piglovesyou/untitled-web-framework",
