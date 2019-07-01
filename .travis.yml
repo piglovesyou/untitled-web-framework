@@ -5,6 +5,8 @@ node_js:
   - '8'
 cache: yarn
 script:
+  - yarn lerna exec yarn
+  - yarn lerna bootstrap
   - yarn codegen
   - yarn lint
   - yarn test
