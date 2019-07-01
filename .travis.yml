@@ -6,7 +6,7 @@ node_js:
 cache: yarn
 script:
   - yarn lerna exec yarn
-  - yarn lerna bootstrap
+  - yarn lerna bootstrap --npm-client yarn
   - yarn codegen
   - yarn lint
   - yarn test
