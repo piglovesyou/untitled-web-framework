@@ -6,6 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
+/* eslint-disable no-underscore-dangle */
 
 import path from 'path';
 import express, { NextFunction, Request, Response } from 'express';
@@ -140,7 +141,6 @@ app.get('*', async (req, res, next) => {
     // Enables critical path CSS rendering
     // https://github.com/kriasoft/isomorphic-style-loader
     const insertCss = (...styles: any[]) => {
-      // eslint-disable-next-line no-underscore-dangle
       styles.forEach(style => css.add(style._getCss()));
     };
 
@@ -229,7 +229,7 @@ app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
       app={{}}
       title="Internal Server Error"
       description={err.message}
-      styles={[{ id: 'css', cssText: errorPageStyle._getCss() }]} // eslint-disable-line no-underscore-dangle
+      styles={[{ id: 'css', cssText: errorPageStyle._getCss() }]}
     >
       {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}
     </Html>,

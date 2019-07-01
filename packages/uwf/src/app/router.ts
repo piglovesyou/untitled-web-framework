@@ -15,11 +15,6 @@ async function action(context: any) {
   const { next } = context;
   const route = await next();
 
-  if (!route) {
-    // debugger;
-    return;
-  }
-
   // Provide default values for title, description etc.
   route.title = `${route.title || 'Untitled Page'} - www.reactstarterkit.com`;
   route.description = route.description || '';

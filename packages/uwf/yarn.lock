@@ -3888,10 +3888,10 @@ ua-parser-js@^0.7.18:
   version "0.7.18"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.18.tgz#a7bfd92f56edfb117083b69e31d2aa8882d4b1ed"
 
-universal-router@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/universal-router/-/universal-router-8.1.0.tgz#1fbd04b8d37633139d6814f7e29dfeeaa446cdfa"
-  integrity sha512-wU9UzCSfD4IznmXRjrqFK5hWtyrJIO9O5A+OIl1sTDvoQWgFn2KnrWbIJ8TrsjMVeDZvYi+PG0lXO9VMSvWOhg==
+universal-router@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/universal-router/-/universal-router-8.2.0.tgz#09b9333ffb022b4ab367e2af589efb5bca1d7ccf"
+  integrity sha512-QuCJiIv+QqPCKCU1dKJVtqBwGUn6RvkIiaHuUoy2cjcNa43Opl2bCUSisCe4AC/hSXFyHdUFB0k0iK8S7Ib2Gg==
   dependencies:
     path-to-regexp "^3.0.0"
 

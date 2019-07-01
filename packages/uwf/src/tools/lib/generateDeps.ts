@@ -1,27 +1,30 @@
-// import { promises } from 'fs';
 import path from 'path';
 import createMD5Hash from './createMD5Hash';
 import { genDir, userDir } from './dirs';
 import getFileNames from './getFileNames';
 import { writeFile } from './fs';
 
-type FileInfo = [string, string, string];
+type ModuleInfo = {
+  modulePath: string;
+  displayPath: string;
+  varName: string;
+};
 
 function buildBindSchemaScript(
-  schemaInfoArray: FileInfo[],
+  moduleInfoArray: ModuleInfo[],
   moduleType: string,
 ) {
   return `/* Auto-generated. Do not edit. */
 
-${schemaInfoArray.reduce((acc, [modulePath, displayPath, varName]) => {
+${moduleInfoArray.reduce((acc, { modulePath, varName }) => {
   return `${acc}import * as ${varName} from '${modulePath}';
 `;
 }, '')}
 import { ${moduleType} } from 'uwf/types';
 
 const importedModules: ${moduleType}[] = [
-  ${schemaInfoArray
-    .map(([modulePath, displayPath, varName]) => {
+  ${moduleInfoArray
+    .map(({ displayPath, varName }) => {
       return `[${varName}, '${displayPath}']`;
     })
     .join(', \n  ')}
@@ -31,7 +34,7 @@ export default importedModules;
 `;
 }
 
-function createFileInfo(fileName: string): FileInfo {
+function createFileInfo(fileName: string): ModuleInfo {
   const displayPath = path.relative(userDir, fileName);
   const varName = `$${createMD5Hash(displayPath)}`;
   let modulePath = path.relative(genDir, fileName);
@@ -44,7 +47,7 @@ function createFileInfo(fileName: string): FileInfo {
     );
   }
 
-  return [modulePath, displayPath, varName];
+  return { modulePath, displayPath, varName };
 }
 
 export default async function generateDeps(
