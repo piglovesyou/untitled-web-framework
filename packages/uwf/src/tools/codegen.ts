@@ -1,11 +1,12 @@
 import { generate } from '@graphql-codegen/cli';
-import { ApolloServer } from 'apollo-server';
 import getPort from 'get-port';
 import path from 'path';
 import { buildDir, genDir, srcDir, userDir } from './lib/dirs';
 import prepareDeps from './lib/prepareDeps';
 import runWebpack from './lib/runWebpack';
 import webpackConfig from './webpack.config';
+import { ApolloServer,  } from 'apollo-server';
+import { makeExecutableSchema } from 'apollo-server-express';
 
 const [, serverConfig] = webpackConfig;
 
@@ -44,7 +45,7 @@ export default async function codegen() {
 
   // eslint-disable-next-line global-require, import/no-dynamic-require, import/no-unresolved
   const builtSchema = require(path.join(buildDir, 'schema')).default;
-  const server = new ApolloServer(builtSchema);
+  const server = new ApolloServer({schema: makeExecutableSchema(builtSchema)});
   const { server: httpServer } = await server.listen({ port });
 
   await generate(

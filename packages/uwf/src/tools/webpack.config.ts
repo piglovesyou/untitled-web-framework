@@ -290,7 +290,7 @@ const config: WebpackOptions = {
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.mjs', '.js', '.json'],
     modules: [
       path.join(libDir, 'node_modules'),
       // TODO: should be erased
@@ -301,7 +301,7 @@ const config: WebpackOptions = {
       new MultiAliasPlugin(
         'described-resolve',
         [
-          { name: 'uwf', alias: path.join(srcDir, 'app') },
+          // { name: 'uwf', alias: path.join(srcDir, 'app') },
           { name: '@configure@', alias: path.join(userDir, 'configure') },
           { name: '@configure@', alias: path.join(srcDir, 'configure') },
         ],
