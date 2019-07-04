@@ -4,8 +4,6 @@ node_js:
   - '10'
 cache: yarn
 script:
-  - yarn lerna bootstrap
-  - yarn lerna exec yarn
-  - yarn codegen
+  - bash ./prepare-dev.sh
   - yarn lint
   - yarn test

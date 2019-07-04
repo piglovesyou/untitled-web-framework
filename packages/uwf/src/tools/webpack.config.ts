@@ -353,7 +353,11 @@ const clientConfig: WebpackOptions = {
   target: 'web',
 
   entry: {
-    client: ['core-js/stable', 'regenerator-runtime/runtime', path.join(srcDir, 'app/client')],
+    client: [
+      'core-js/stable',
+      'regenerator-runtime/runtime',
+      path.join(srcDir, 'app/client'),
+    ],
   },
 
   plugins: [

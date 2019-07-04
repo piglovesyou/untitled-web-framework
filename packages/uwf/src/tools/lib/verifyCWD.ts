@@ -1,8 +1,7 @@
-import path from 'path';
+// import path from 'path';
 
 export default function verifyCWD() {
   // TODO: Not sure how to verify..
-
   // @ts-ignore
   // const pkgPath = path.resolve(process.env.INIT_CWD, 'package.json');
   // let pkg;
