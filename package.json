@@ -145,8 +145,8 @@
     "fix-js": "yarn run lint-js --fix",
     "fix-css": "yarn run lint-css --fix",
     "fix": "yarn run fix-js && yarn run fix-css",
-    "codegen": "yarn lerna run prepack && yarn lerna run codegen",
-    "test": "yarn tsc --noEmit && yarn lerna run build"
+    "codegen": "yarn lerna run prepack && INIT_CWD=${PWD}/examples/basic yarn lerna run codegen",
+    "test": "yarn tsc --noEmit && INIT_CWD=${PWD}/examples/basic yarn lerna run build"
   },
   "husky": {
     "hooks": {
