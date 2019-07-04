@@ -1,5 +1,5 @@
-import { genDir } from "./dirs";
-import { makeDir } from "./fs";
+import { genDir } from './dirs';
+import { makeDir } from './fs';
 import generateRoutesDeps from './generateRoutesDeps';
 import generateDeps from './generateDeps';
 
