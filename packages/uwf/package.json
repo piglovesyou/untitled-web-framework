@@ -15,7 +15,6 @@
   ],
   "main": "src/exports.ts",
   "dependencies": {
-    "@babel/polyfill": "^7.4.0",
     "@piglovesyou/isomorphic-style-loader": "^4.1.1",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
@@ -24,8 +23,8 @@
     "apollo-link-http": "^1.5.14",
     "apollo-link-logger": "^1.2.3",
     "apollo-link-schema": "^1.2.2",
-    "apollo-server": "^2.6.2",
-    "apollo-server-express": "^2.4.8",
+    "apollo-server": "^2.6.7",
+    "apollo-server-express": "^2.6.7",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
@@ -82,6 +81,8 @@
     "@graphql-codegen/typescript-react-apollo": "^1.2.0",
     "@piglovesyou/enhanced-resolve": "^4.3.0",
     "copyfiles": "^2.1.0",
+    "core-js": "3.0.0-beta.11",
+    "regenerator-runtime": "^0.13.2",
     "typesync": "^0.5.1"
   },
   "peerDependencies": {

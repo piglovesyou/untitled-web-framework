@@ -290,7 +290,8 @@ const config: WebpackOptions = {
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.mjs', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
+    mainFields: ['main', 'module'],
     modules: [
       path.join(libDir, 'node_modules'),
       // TODO: should be erased
@@ -302,6 +303,7 @@ const config: WebpackOptions = {
         'described-resolve',
         [
           // { name: 'uwf', alias: path.join(srcDir, 'app') },
+          { name: 'uwf', alias: libDir },
           { name: '@configure@', alias: path.join(userDir, 'configure') },
           { name: '@configure@', alias: path.join(srcDir, 'configure') },
         ],
@@ -311,7 +313,7 @@ const config: WebpackOptions = {
   },
 
   resolveLoader: {
-    extensions: ['.ts', '.js', '.json'],
+    extensions: ['.ts', '.mjs', '.js', '.json'],
   },
 
   // Don't attempt to continue if there are any errors.
@@ -351,7 +353,7 @@ const clientConfig: WebpackOptions = {
   target: 'web',
 
   entry: {
-    client: ['@babel/polyfill', path.join(srcDir, 'app/client')],
+    client: ['core-js/stable', 'regenerator-runtime/runtime', path.join(srcDir, 'app/client')],
   },
 
   plugins: [
