@@ -4,7 +4,7 @@
 
 const {resolve} = require('path');
 let srcDir = resolve(__dirname, '../dist');
-const isDevelop = process.argv.includes('--develop');
+const isDevelop = process.argv.includes('--develop') || process.env.NODE_ENV === 'develop';
 
 if (isDevelop) {
   require('@babel/register')({
