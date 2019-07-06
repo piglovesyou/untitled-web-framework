@@ -61,7 +61,7 @@ const config = {
     // Add vendor prefixes to CSS rules using values from caniuse.com
     // https://github.com/postcss/autoprefixer
     require('autoprefixer')({
-      browsers: pkg.browserslist,
+      // browsers: pkg.browserslist,
       flexbox: 'no-2009',
     }),
     // CSS Nano options http://cssnano.co/
