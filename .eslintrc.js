@@ -21,10 +21,10 @@ module.exports = {
 
   plugins: ['@typescript-eslint/eslint-plugin', 'css-modules', 'prettier'],
 
-  parserOptions: {
-    sourceType: 'module',
-    // project: './tsconfig.json',
-  },
+  // parserOptions: {
+  //   sourceType: 'module',
+  //   project: './tsconfig.json',
+  // },
 
   globals: {
     __DEV__: true,
