@@ -153,7 +153,5 @@
       "pre-commit": "#lint-staged"
     }
   },
-  "dependencies": {
-    "@piglovesyou/isomorphic-style-loader": "^4.1.1"
-  }
+  "dependencies": {}
 }
