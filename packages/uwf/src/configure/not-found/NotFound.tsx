@@ -8,7 +8,7 @@
  */
 
 import React, { FunctionComponent } from 'react';
-import Link from '@configure@/Link';
+import Link from '../../app/Link';
 
 type PropTypes = {
   title: string;
