@@ -12,5 +12,5 @@ yarn lerna bootstrap
 (cd $LIB_DIR && yarn && NODE_ENV=develop INIT_CWD=$USER_DIR ./bin/uwf codegen && yarn run prepack)
 
 # Copy $LIB_DIR as deps of examples/basic by installing all deps
-(cd $USER_DIR && yarn)
+(cd $USER_DIR && yarn && yarn codegen)
 

@@ -8,12 +8,15 @@
  */
 
 import cp from 'child_process';
-import run from './run';
+import * as path from 'path';
+import pkg from '../../package.json';
+import bundle from './bundle';
 import clean from './clean';
 import copy from './copy';
-import bundle from './bundle';
+import { libDir, userDir } from './lib/dirs';
+import { moveDir } from './lib/fs';
 import render from './render';
-import pkg from '../../package.json';
+import run from './run';
 
 /**
  * Compiles the project from source files into a distributable
@@ -27,6 +30,8 @@ async function build() {
   if (process.argv.includes('--static')) {
     await run(render);
   }
+
+  await moveDir(path.join(libDir, 'build'), path.join(userDir, 'build'));
 
   if (process.argv.includes('--docker')) {
     cp.spawnSync('docker', ['build', '-t', pkg.name, '.'], {
