@@ -53,7 +53,7 @@ export default async function codegen() {
   await generate(
     {
       schema: `http://localhost:${port}/graphql`,
-      documents: path.join(userDir, '**/*.graphql'),
+      documents: path.join(userDir, '{routes,components}/**/*.graphql'),
       generates: {
         [path.join(genDir, 'dataBinders.tsx')]: {
           plugins: [

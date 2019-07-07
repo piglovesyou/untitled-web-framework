@@ -303,7 +303,7 @@ const config: WebpackOptions = {
         'described-resolve',
         [
           // { name: 'uwf', alias: path.join(srcDir, 'app') },
-          { name: 'uwf', alias: libDir },
+          { name: 'uwf/withStyles', alias: path.join(srcDir, 'app/withStyles') },
           { name: '@configure@', alias: path.join(userDir, 'configure') },
           { name: '@configure@', alias: path.join(srcDir, 'configure') },
         ],

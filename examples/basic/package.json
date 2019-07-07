@@ -10,10 +10,10 @@
     "codegen": "uwf codegen"
   },
   "dependencies": {
+    "node-fetch": "^2.6.0",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
-    "react-apollo": "^2.5.6",
-    "react-apollo-hooks": "^0.4.5",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "uwf": "file:../../packages/uwf"
   }
 }
