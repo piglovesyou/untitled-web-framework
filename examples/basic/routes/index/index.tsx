@@ -1,18 +1,18 @@
 /* eslint-disable react/no-danger */
 
-import React from "react";
-import withStyles from "uwf/withStyles";
-import { withHomeNews } from "uwf/dataBinders";
-import Layout from "../../components/Layout/Layout";
-import s from "./index.css";
+import React from 'react';
+import withStyles from 'uwf/withStyles';
+import { withHomeNews } from 'uwf/dataBinders';
+import Layout from '../../components/Layout/Layout';
+import s from './index.css';
 
-export const title = "Top page";
+export const title = 'Top page';
 
 const Home = withHomeNews<{}>()(props => {
   const {
     reactjsGetAllNews,
     networkStatus: { isConnected },
-    loading
+    loading,
   } = props.data!;
 
   return (
@@ -20,11 +20,11 @@ const Home = withHomeNews<{}>()(props => {
       <div className={s.root}>
         <div className={s.container}>
           <p className={s.networkStatusMessage}>
-            {isConnected ? "Online" : "Offline"}
+            {isConnected ? 'Online' : 'Offline'}
           </p>
           <h1>React.js News</h1>
           {loading || !reactjsGetAllNews
-            ? "Loading..."
+            ? 'Loading...'
             : reactjsGetAllNews.map(item => (
                 <article key={item.link} className={s.newsItem}>
                   <h1 className={s.newsTitle}>

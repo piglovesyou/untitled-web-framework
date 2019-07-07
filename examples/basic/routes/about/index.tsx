@@ -1,9 +1,9 @@
-import React from "react";
-import Layout from "../../components/Layout/Layout";
-import Page from "../../components/Page/Page";
-import md from "./index.md";
+import React from 'react';
+import Layout from '../../components/Layout/Layout';
+import Page from '../../components/Page/Page';
+import md from './index.md';
 
-export const title = "About";
+export const title = 'About';
 
 const About = () => (
   <Layout>

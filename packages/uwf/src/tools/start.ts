@@ -21,6 +21,8 @@ import webpackConfig from './webpack.config';
 import run, { format } from './run';
 import clean from './clean';
 
+import codegen from './codegen';
+
 const isDebug = !process.argv.includes('--release');
 
 // https://webpack.js.org/configuration/watch/#watchoptions
@@ -66,8 +68,6 @@ function createCompilationPromise(
 }
 
 let server: Application;
-
-import codegen from './codegen';
 
 /**
  * Launches a development web server with "live reload" functionality -

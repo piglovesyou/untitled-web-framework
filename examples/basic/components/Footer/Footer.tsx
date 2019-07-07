@@ -7,10 +7,10 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { FunctionComponent } from "react";
-import withStyles from "uwf/withStyles";
-import Link from "uwf/Link";
-import s from "./Footer.css";
+import React, { FunctionComponent } from 'react';
+import withStyles from 'uwf/withStyles';
+import Link from 'uwf/Link';
+import s from './Footer.css';
 
 const Footer: FunctionComponent = () => (
   <div className={s.root}>

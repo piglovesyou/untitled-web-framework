@@ -1,6 +1,6 @@
-import fetch from "node-fetch";
+import fetch from 'node-fetch';
 
-import { ReactJsNewsItem } from "uwf/dataBinders";
+import { ReactJsNewsItem } from 'uwf/dataBinders';
 
 export const schema = `
   type ReactJSNewsItem {
@@ -28,8 +28,8 @@ export const schema = `
 
 // React.js News Feed (RSS)
 const url =
-  "https://api.rss2json.com/v1/api.json" +
-  "?rss_url=https%3A%2F%2Freactjsnews.com%2Ffeed.xml";
+  'https://api.rss2json.com/v1/api.json' +
+  '?rss_url=https%3A%2F%2Freactjsnews.com%2Ffeed.xml';
 
 let items: ReactJsNewsItem[] = [];
 let lastFetchTask: Promise<ReactJsNewsItem[]> | null;
@@ -47,7 +47,7 @@ export const resolvers = {
         lastFetchTask = fetch(url)
           .then(response => response.json())
           .then(data => {
-            if (data.status === "ok") {
+            if (data.status === 'ok') {
               items = data.items;
             }
 
@@ -67,6 +67,6 @@ export const resolvers = {
       }
 
       return items;
-    }
-  }
+    },
+  },
 };

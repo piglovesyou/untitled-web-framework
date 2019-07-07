@@ -7,10 +7,10 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { ComponentType } from "react";
-import Link from "uwf/Link";
-import withStyles from "uwf/withStyles";
-import s from "./Navigation.css";
+import React, { ComponentType } from 'react';
+import Link from 'uwf/Link';
+import withStyles from 'uwf/withStyles';
+import s from './Navigation.css';
 
 const Navigation: ComponentType<{}> = () => (
   <div className={s.root} role="navigation">

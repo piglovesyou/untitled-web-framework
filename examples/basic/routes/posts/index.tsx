@@ -1,8 +1,8 @@
-import React from "react";
-import Link from "uwf/Link";
-import Layout from "../../components/Layout/Layout";
+import React from 'react';
+import Link from 'uwf/Link';
+import Layout from '../../components/Layout/Layout';
 
-export const title = "Posts";
+export const title = 'Posts';
 
 const Home = () => (
   <Layout>
