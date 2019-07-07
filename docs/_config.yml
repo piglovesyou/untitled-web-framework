@@ -1,1 +1,7 @@
 theme: jekyll-theme-slate
+
+title: Untitled Web Framework
+description: [A short description of your site's purpose]
+
+show_downloads: false
+#google_analytics: [Your Google Analytics tracking ID]
