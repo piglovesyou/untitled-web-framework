@@ -8,7 +8,7 @@
  */
 
 import path from 'path';
-import { libDir, userDir } from 'uwf/src/tools/lib/dirs';
+import { libDir, userDir } from './lib/dirs';
 import { cleanDir } from './lib/fs';
 
 /**
