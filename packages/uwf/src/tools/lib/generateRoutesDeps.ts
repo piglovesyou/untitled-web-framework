@@ -18,7 +18,7 @@ const buildRouteChildScript = ({
 }: PathInfo): string => `
   {
     path: '${routePath}',
-    load: async (): Promise<RouteInfo> => ({
+    load: async (): Promise<uwf.RouteInfo> => ({
       module: await import(/* webpackChunkName: '${chunkName}' */ '${modulePath}'),
       chunkName: '${chunkName}',
       ext: '${ext}',
@@ -29,8 +29,6 @@ const buildRouteChildScript = ({
 const buildRoutesScript = (
   pathInfoArray: PathInfo[],
 ): string => `/* Auto-generated. Do not edit. */
-
-import { RouteInfo } from '../types';
 
 const routes = [
 ${pathInfoArray.map(buildRouteChildScript).join('')}

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-find . -type dir \( \
+git clean -df
+
+find . -type dir -depth 2 \( \
         -name node_modules \
     -o  -name __generated__ \
     -o  -name build \

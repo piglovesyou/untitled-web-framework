@@ -37,7 +37,8 @@
     "baseUrl": "./",
     "paths": {
       "@configure@/*": ["examples/basic/configure/*", "packages/uwf/src/configure/*"],
-      "uwf/*": ["packages/uwf/*"]
+      "uwf/dataBinders": ["packages/uwf/__generated__/dataBinders"],
+      "uwf/*": ["packages/uwf/src/app/*", "packages/uwf/*"]
     },                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     "typeRoots": [

@@ -75,6 +75,7 @@
     "prepack": "rimraf dist && copyfiles -u 1 src/**/*.css dist && babel --extensions '.ts,.tsx,.js' -d dist src"
   },
   "devDependencies": {
+    "@babel/cli": "~7.4.0",
     "@graphql-codegen/cli": "~1.2.0",
     "@graphql-codegen/typescript": "1.2.0",
     "@graphql-codegen/typescript-operations": "^1.2.0",
@@ -83,6 +84,7 @@
     "copyfiles": "^2.1.0",
     "core-js": "3.0.0-beta.11",
     "regenerator-runtime": "^0.13.2",
+    "rimraf": "^2.6.3",
     "typesync": "^0.5.1"
   },
   "peerDependencies": {

@@ -7,7 +7,6 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@babel/cli": "~7.4.0",
     "@babel/core": "~7.4.0",
     "@babel/node": "~7.4.0",
     "@babel/plugin-proposal-class-properties": "^7.4.0",
@@ -124,7 +123,6 @@
     "react-dev-utils": "^8.0.0",
     "react-error-overlay": "^5.1.4",
     "react-test-renderer": "^16.8.4",
-    "rimraf": "^2.6.3",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^2.1.0",

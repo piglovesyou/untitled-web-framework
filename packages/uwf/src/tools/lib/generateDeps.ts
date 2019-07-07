@@ -20,8 +20,6 @@ ${moduleInfoArray.reduce((acc, { modulePath, varName }) => {
   return `${acc}import * as ${varName} from '${modulePath}';
 `;
 }, '')}
-import { ${moduleType} } from 'uwf/types';
-
 const importedModules: ${moduleType}[] = [
   ${moduleInfoArray
     .map(({ displayPath, varName }) => {

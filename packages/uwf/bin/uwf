@@ -16,9 +16,6 @@ if (isDevelop) {
   srcDir = resolve(__dirname, '../src');
 }
 
-const verifyCWD = require(resolve(srcDir, 'tools/lib/verifyCWD')).default;
-verifyCWD();
-
 const run = require(resolve(srcDir, 'tools/run')).default;
 const task = require(resolve(srcDir, 'tools', process.argv[2])).default;
 

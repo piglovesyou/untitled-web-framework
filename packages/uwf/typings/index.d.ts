@@ -1,61 +1,30 @@
-// Declare globals
-// eslint-disable-next-line no-unused-vars
-declare const __DEV__: boolean;
+declare namespace uwf {
+  import { ComponentType } from 'react';
 
-// Extend globals
-interface Window {
-  ga: any;
-  App: any;
-}
-interface NodeModule {
-  hot: any;
-}
+  export type SchemaDepsBase = {
+    schema?: string;
+    resolvers?: Object;
+  };
 
-// Extend existing modules
-declare module 'child_process' {
-  interface ChildProcess {
-    host?: string;
-  }
-}
+  export type ClientSchemaDeps = SchemaDepsBase & {
+    defaults?: Object;
+  };
 
-// Declare modules for non-typed packages
-declare module '@piglovesyou/isomorphic-style-loader/StyleContext';
-declare module '@piglovesyou/enhanced-resolve/lib/AliasPlugin';
-declare module 'react-deep-force-update';
-declare module 'apollo-link-logger';
-declare module 'webpack-hot-middleware/client';
-declare module 'react-dev-utils/launchEditorEndpoint';
-declare module 'react-dev-utils/errorOverlayMiddleware';
-declare module 'react-notifications-component';
-declare module 'react-error-overlay';
-declare module 'react-test-renderer';
-declare module '@piglovesyou/isomorphic-style-loader/withStyles' {
-  /* eslint no-underscore-dangle:0 */
-  /* eslint no-undef:0 */
-  const _default: <T>(
-    s1: string,
-    s2?: string,
-    s3?: string,
-    s4?: string,
-    s5?: string,
-  ) => /* eslint no-undef:0 */
-  (arg0: typeof T) => typeof T;
-  /* eslint import/export:0 */
-  export default _default;
-}
+  export type ModuleInfo<T> = [T, string];
 
-// Declare non-ts modules to be loaded by webpack loaders
-declare module '*.css';
-declare module '*.md';
-declare module '*.png';
-declare module '*.graphql' {
-  // /* eslint no-unused-vars:0 */
-  // import { DocumentNode } from 'graphql';
-  //
-  // /* eslint vars-on-top:0 */
-  // /* eslint no-var:0 */
-  // var d: DocumentNode;
-  // /* eslint import/export:0 */
-  export default string;
+  export type SchemaInfo = ModuleInfo<SchemaDepsBase>;
+
+  export type ClientSchemaInfo = ModuleInfo<ClientSchemaDeps>;
+
+  export type GraphqlDeps = ModuleInfo<{ default: string }>;
+
+  export type RouteInfo = {
+    module: {
+      title: string;
+      default: ComponentType;
+    };
+    chunkName: string;
+    ext: string;
+  };
 }
-declare module '!isomorphic-style-loader!*';
+// export = uwf;

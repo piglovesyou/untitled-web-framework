@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 
+set -e
+
+USER_DIR=`pwd`/examples/basic
+LIB_DIR=`pwd`/packages/uwf
+
 yarn
 yarn lerna bootstrap
-yarn lerna exec yarn
-(cd examples/basic && cd `yarn bin` && ln -s ../../../../packages/uwf/bin/uwf .)
-yarn lerna run prepack
-(cd examples/basic && NODE_ENV=develop yarn codegen)
+
+# Codegen to generate TS files for examples/basic
+(cd $LIB_DIR && yarn && NODE_ENV=develop INIT_CWD=$USER_DIR ./bin/uwf codegen && yarn run prepack)
+
+# Copy $LIB_DIR as deps of examples/basic by installing all deps
+(cd $USER_DIR && yarn)
+

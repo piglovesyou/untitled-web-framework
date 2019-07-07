@@ -7,11 +7,15 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
+import verifyCWD from './lib/verifyCWD';
+
 export function format(time: Date) {
   return time.toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
 }
 
 function run(task: (arg0: any) => Promise<any>, options?: any) {
+  verifyCWD();
+
   // const task = typeof fn.default === 'undefined' ? fn : fn.default;
   const start = new Date();
   console.info(
