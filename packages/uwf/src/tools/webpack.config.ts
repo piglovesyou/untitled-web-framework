@@ -303,6 +303,7 @@ const config: WebpackOptions = {
         'described-resolve',
         [
           // { name: 'uwf', alias: path.join(srcDir, 'app') },
+          { name: 'uwf/dataBinders', alias: path.join(genDir, 'dataBinders') },
           { name: 'uwf', alias: path.join(srcDir, 'app') },
           { name: '@configure@', alias: path.join(userDir, 'configure') },
           { name: '@configure@', alias: path.join(srcDir, 'configure') },
