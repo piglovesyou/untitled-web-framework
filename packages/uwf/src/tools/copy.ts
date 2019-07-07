@@ -22,6 +22,7 @@ async function copy() {
   await makeDir('build');
   const libPkg = require(path.join(libDir, 'package.json'));
   const userPkg = require(path.join(userDir, 'package.json'));
+  delete userPkg.dependencies.uwf;
   await Promise.all([
     writeFile(
       path.join(buildDir, 'package.json'),

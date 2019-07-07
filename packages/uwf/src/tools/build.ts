@@ -17,6 +17,7 @@ import { libDir, userDir } from './lib/dirs';
 import { moveDir } from './lib/fs';
 import render from './render';
 import run from './run';
+import codegen from './codegen';
 
 /**
  * Compiles the project from source files into a distributable
@@ -24,6 +25,7 @@ import run from './run';
  */
 async function build() {
   await run(clean);
+  await run(codegen);
   await run(copy);
   await run(bundle);
 

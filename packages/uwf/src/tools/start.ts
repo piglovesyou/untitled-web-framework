@@ -67,6 +67,8 @@ function createCompilationPromise(
 
 let server: Application;
 
+import codegen from './codegen';
+
 /**
  * Launches a development web server with "live reload" functionality -
  * synchronizing URLs, interactions and code changes across multiple devices.
@@ -74,7 +76,7 @@ let server: Application;
 async function start() {
   if (server) return server;
 
-  await run(require('./codegen').default);
+  await run(codegen);
 
   server = express();
   server.use(errorOverlayMiddleware());
